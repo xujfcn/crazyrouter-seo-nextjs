@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  assetPrefix: process.env.NEXT_PUBLIC_ASSET_PREFIX || "",
   async redirects() {
     return [
       {
