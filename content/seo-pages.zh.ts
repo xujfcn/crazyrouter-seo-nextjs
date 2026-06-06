@@ -105,33 +105,37 @@ export const zhSeoPages: SeoPage[] = [
     eyebrow: "图片 API 指南",
     h1: "GPT Image 2 API 中文接入指南",
     intro:
-      "本页只围绕 CrazyRouter 价格页当前提供的 gpt-image-2 编写，使用 https://cn.crazyrouter.com/v1 的文档路径，并把模型名、价格、端点和代码示例保持一致。",
+      "使用 CrazyRouter 调用 gpt-image-2 生成和编辑图片。OpenAI 兼容客户端把 base_url 配置为 https://cn.crazyrouter.com/v1，图片生成请求发送到 /v1/images/generations。",
     primaryKeyword: "gpt-image-2 api",
     secondaryKeywords: ["gpt image api", "openai 图片生成 api", "gpt-image-2 价格"],
     cta: "创建 API Key",
     intent:
-      "搜索 GPT Image API 的开发者通常需要确认模型名、图片生成端点、不可用参数和真实计费口径，而不是只看泛化的图片模型介绍。",
+      "适合正在把图片生成接入到后端服务、自动化脚本或内部工具的开发者。你可以在这里确认模型名、生成端点、常用参数、价格口径和最小可运行示例。",
     sections: [
       {
-        heading: "与价格页对齐",
+        heading: "接入前先确认三件事",
         body:
-          "CrazyRouter 价格 API 当前包含 gpt-image-2，并公开 image-generation 端点类型。本页的标题、代码、内部链接和 sitemap 都使用这个模型名。",
-        bullets: base("gpt-image-2-api").sections[0].bullets
-      },
-      {
-        heading: "文档参数规则",
-        body:
-          "gpt-image-2 使用 POST /v1/images/generations 做生成，使用 POST /v1/images/edits 做编辑。不要传 response_format、style、input_fidelity、background=transparent 或 quality=standard；需要输出格式时使用 output_format。",
+          "gpt-image-2 走 OpenAI Images 兼容接口。新接入时先固定模型名、Base URL 和生成端点，再根据业务需要增加 size、quality、output_format 等参数。",
         bullets: [
-          "OpenAI SDK 的 base_url 设置为 https://cn.crazyrouter.com/v1。",
-          "先用 n=1 做小流量验证，再扩大批量调用。",
-          "生成结果 URL 应由业务侧及时下载或转存。"
+          "模型名：gpt-image-2。",
+          "OpenAI 兼容 Base URL：https://cn.crazyrouter.com/v1。",
+          "图片生成端点：POST https://cn.crazyrouter.com/v1/images/generations。"
         ]
       },
       {
-        heading: "页面提供的实际功能",
+        heading: "生成图片的推荐请求方式",
         body:
-          "本页包含价格卡片、端点证据、cURL/Python 示例和相关指南入口，可直接用于开发检查，不是占位 SEO 页面。"
+          "最小请求只需要 model、prompt 和 n。需要控制尺寸时使用 size；需要控制质量时使用 quality；需要指定文件格式时使用 output_format。响应默认从 data[0].url 读取图片地址。",
+        bullets: [
+          "size 可使用 auto 或宽x高，例如 1024x1024、1536x1024、1024x1536。",
+          "quality 可使用 auto、low、medium、high；旧客户端传 standard 时服务端会归一为 auto。",
+          "output_format 可使用 png、jpeg 或 webp；如果要压缩 jpeg/webp，再配合 output_compression。"
+        ]
+      },
+      {
+        heading: "编辑图片和多图参考",
+        body:
+          "如果要编辑已有图片，使用 POST /v1/images/edits，并用 multipart/form-data 上传 image 或 image[]。gpt-image-2 最多支持 16 张参考图，适合做局部编辑、风格参考和多图融合。"
       }
     ],
     faqs: [
@@ -147,7 +151,7 @@ export const zhSeoPages: SeoPage[] = [
       {
         question: "gpt-image-2 可以直接使用 size 和 quality 吗？",
         answer:
-          "按当前文档，gpt-image-2 不应发送 quality=standard 等不支持参数。建议按文档字段最小化请求体，再逐项增加业务需要的参数。"
+          "可以。当前 GPT Image 文档支持 size 和 quality。size 可以是 auto 或符合限制的宽x高；quality 可以是 auto、low、medium、high，旧客户端传 standard 时会被归一为 auto。"
       }
     ]
   }),

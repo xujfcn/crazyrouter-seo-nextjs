@@ -20,9 +20,9 @@ const templateCopy = {
   en: {
     docsSource: "Docs source",
     updated: "Updated",
-    searchIntent: "Search intent",
-    primaryKeyword: "Primary keyword",
-    secondaryKeywords: "Secondary keywords",
+    searchIntent: "Use case",
+    primaryKeyword: "Main topic",
+    secondaryKeywords: "Related topics",
     pricingModels: "Pricing page models",
     pricingSource: "Source: GET https://cn.crazyrouter.com/api/pricing, snapshot",
     billing: "Billing",
@@ -40,18 +40,18 @@ const templateCopy = {
     result: "Result",
     implementationExamples: "Implementation examples",
     faq: "FAQ",
-    docsAlignment: "Docs alignment",
+    docsAlignment: "Source docs",
     relatedPages: "Related guide pages",
     namespaceTitle: "Unified route namespace",
     namespaceBody:
       "This SEO project generates only /guide/* paths so it does not conflict with existing /tools/* entries on the CrazyRouter tools project."
   },
   zh: {
-    docsSource: "文档来源",
+    docsSource: "查看文档索引",
     updated: "更新于",
-    searchIntent: "搜索意图",
-    primaryKeyword: "主关键词",
-    secondaryKeywords: "次级关键词",
+    searchIntent: "适用场景",
+    primaryKeyword: "页面主题",
+    secondaryKeywords: "相关主题",
     pricingModels: "价格页模型",
     pricingSource: "来源：GET https://cn.crazyrouter.com/api/pricing，快照日期",
     billing: "计费方式",
@@ -69,13 +69,49 @@ const templateCopy = {
     result: "结果",
     implementationExamples: "接入示例",
     faq: "常见问题",
-    docsAlignment: "文档对齐",
+    docsAlignment: "相关文档",
     relatedPages: "相关中文指南",
     namespaceTitle: "统一路由命名空间",
     namespaceBody:
       "本 SEO 项目公开页面使用 /guide/* 和 /zh/guide/* 路径，不占用 CrazyRouter Tools 已有的 /tools/* 入口。"
   }
 };
+
+function docUrlFromRef(ref: string) {
+  const path = ref
+    .replace(/^crazyrouter-docs\//, "")
+    .replace(/\.mdx$/, "")
+    .replace(/\\/g, "/");
+
+  return `https://docs.crazyrouter.com/${path}`;
+}
+
+function docLabelFromRef(ref: string, locale: PageLocale) {
+  const labels: Record<string, { en: string; zh: string }> = {
+    "crazyrouter-docs/images/gpt-image.mdx": {
+      en: "GPT Image docs",
+      zh: "GPT Image 文档"
+    },
+    "crazyrouter-docs/api-endpoint.mdx": {
+      en: "API endpoint docs",
+      zh: "API 接入地址"
+    },
+    "crazyrouter-docs/llms-guide.mdx": {
+      en: "llms.txt guide",
+      zh: "llms.txt 文档索引"
+    }
+  };
+
+  const mapped = labels[ref]?.[locale];
+  if (mapped) {
+    return mapped;
+  }
+
+  return ref
+    .replace(/^crazyrouter-docs\//, "")
+    .replace(/\.mdx$/, "")
+    .replace(/[-/]/g, " ");
+}
 
 function endpointText(endpointType: string | undefined) {
   if (!endpointType) {
@@ -278,11 +314,19 @@ export function SeoPageTemplate({ page, locale = "en", pages = seoPages }: SeoPa
         <aside className="space-y-6">
           <div className="rounded-lg border border-line bg-white p-5">
             <h2 className="text-base font-semibold text-ink">{copy.docsAlignment}</h2>
-            <div className="mt-4 space-y-2">
+            <div className="mt-4 space-y-3">
               {page.docsRefs.map((ref) => (
-                <div key={ref} className="rounded-md border border-line bg-panel p-3 text-xs leading-5 text-muted">
-                  {ref}
-                </div>
+                <a
+                  key={ref}
+                  href={docUrlFromRef(ref)}
+                  className="block rounded-md border border-line bg-panel p-3 text-xs leading-5 text-muted hover:border-brand hover:text-ink"
+                >
+                  <span className="flex items-center gap-2 font-semibold text-ink">
+                    {docLabelFromRef(ref, locale)}
+                    <ExternalLink size={12} aria-hidden="true" />
+                  </span>
+                  <span className="mt-1 block break-words">{docUrlFromRef(ref)}</span>
+                </a>
               ))}
             </div>
           </div>
