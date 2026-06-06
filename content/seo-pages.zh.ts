@@ -182,7 +182,7 @@ export const zhSeoPages: SeoPage[] = [
       {
         heading: "当前公开调用约定",
         body:
-          "文档当前主要覆盖文生视频和单图生视频的客户侧调用。参考素材、首尾帧、带音频和 4K 等能力在价格规则中可能出现 beta 或供应商能力标记，正式页面不应默认承诺。",
+          "当前 Veo 文档主要覆盖文生视频和单图生视频。参考素材、首尾帧、带音频和 4K 等扩展能力，请在接入前核对最新 Veo 文档和价格规则。",
         bullets: [
           "创建任务：POST https://cn.crazyrouter.com/v1/video/create。",
           "查询任务：GET https://cn.crazyrouter.com/v1/video/query?id={task_id}。",
@@ -357,98 +357,64 @@ export const zhSeoPages: SeoPage[] = [
       }
     ]
   }),
-  page("crazyrouter-vs-apimart", {
-    title: "CrazyRouter vs Apimart.ai 中文对比 | AI API 平台比较",
-    description: "比较 CrazyRouter 与 Apimart.ai 在 AI API 发现、生产路由、价格数据和开发接入流程上的差异。",
-    eyebrow: "竞品对比",
-    h1: "CrazyRouter vs Apimart.ai 中文对比",
+  page("ai-api-platform-comparison", {
+    title: "AI API 平台对比：CrazyRouter、Apimart、OpenRouter、AIML API | CrazyRouter",
+    description: "比较 CrazyRouter 与 Apimart.ai、OpenRouter、AIML API、Requesty、Eden AI、Replicate 等 AI API 平台的适用场景。",
+    eyebrow: "平台对比",
+    h1: "AI API 平台对比",
     intro:
-      "如果你正在比较 Apimart.ai 和 CrazyRouter，核心差异是使用场景：先发现 API 资源，还是把模型调用收敛到可计费、可观测、文档清晰的生产网关。",
-    primaryKeyword: "crazyrouter vs apimart",
-    secondaryKeywords: ["apimart 替代", "apimart.ai 替代", "ai api 市场"],
-    cta: "比较生产路由",
+      "选择 AI API 平台时，不只是比较某一家竞品。更重要的是判断你处在哪个阶段：浏览 API、路由大量 LLM、聚合多家供应商，还是把真实生产请求放到可计费、可观测、文档清晰的 API 网关后面。",
+    primaryKeyword: "ai api 平台对比",
+    secondaryKeywords: ["apimart 替代", "openrouter 替代", "aiml api 替代", "ai api 市场"],
+    cta: "比较 API 平台",
     intent:
-      "搜索这个对比的人通常在决定：继续浏览 API 市场，还是把模型调用收敛到一个可运营、可计费、可观测的统一网关。",
+      "适合已经看过多个 AI API 平台，正在决定生产流量应该接入哪一层网关的开发者和团队。",
     sections: [
       {
-        heading: "一句话决策",
+        heading: "先按使用阶段判断",
         body:
-          "如果目标是浏览有哪些 API，Apimart.ai 式发现有价值；如果目标是生产接入，CrazyRouter 的重点是一套 Base URL、Bearer 认证、价格行、端点类型、日志和模型文档。"
+          "发现阶段需要能快速浏览供应商、模型类别和 API 能力；生产阶段更需要稳定 Base URL、一致认证、端点级示例、价格可见、控制台账单和消费日志。CrazyRouter 更偏后者。"
       },
       {
-        heading: "CrazyRouter 能提供什么",
+        heading: "主要平台怎么区分",
         body:
-          "CrazyRouter 的重点是把模型接入所需的信息放到同一套工作流中：公开价格 API、端点映射、模型指南、可复制 cURL 示例和控制台消费记录。",
+          "这些平台并不是同一个定位。把它们放在一起看，能更清楚地区分发现市场、模型路由、多供应商聚合和生产 API 网关。",
+        bullets: [
+          "Apimart.ai：更适合先浏览 API 品类和发现可用服务。",
+          "OpenRouter：更适合通过 OpenAI 兼容接口路由大量 LLM。",
+          "AIML API：更适合用一个 API 面覆盖较多模型和多模态能力。",
+          "Requesty：更偏 AI gateway，关注路由、观测、密钥和成本控制。",
+          "Eden AI：更偏多供应商聚合和工作流型 AI 能力接入。",
+          "Replicate：更适合运行托管的社区模型和开源模型。"
+        ]
+      },
+      {
+        heading: "CrazyRouter 适合什么场景",
+        body:
+          "当你已经明确要接入图片、视频、聊天、Embedding 或兜底链路时，CrazyRouter 的价值在于把标准模型名、端点、价格、文档和消费记录放到同一套接入流程中。API 请求使用 https://cn.crazyrouter.com；账号登录、充值、控制台和消费记录使用 https://crazyrouter.com。",
         bullets: [
           "价格来源：GET https://cn.crazyrouter.com/api/pricing。",
           "OpenAI 兼容 Base URL：https://cn.crazyrouter.com/v1。",
-          "模型页链接到具体 docs 文件和 endpoint type。",
-          "账号创建、充值和消费记录在 https://crazyrouter.com 完成。"
+          "模型页链接到具体 CrazyRouter 文档和 endpoint type。",
+          "成本估算使用真实模型行，不使用泛化类别价格。"
         ]
       },
       {
-        heading: "下一步怎么评估",
+        heading: "推荐评估流程",
         body:
-          "先选一个真实模型指南，复制标准模型名，核对端点和价格，再用成本计算器估算月费用。准备发起请求时，到 https://crazyrouter.com 创建 API Key。"
+          "先选一个真实工作负载，再选择平台。图片生成可以从 gpt-image-2、qwen-image-max 或 nano-banana-2 开始；视频生成可以从 veo-3.1-fast 开始。复制标准模型名，核对端点和价格，再用成本计算器估算月费用。"
       }
     ],
     faqs: [
       {
-        question: "是否声称 CrazyRouter 流量高于 Apimart.ai？",
+        question: "这里是否比较各平台流量高低？",
         answer:
-          "不声称。流量判断需要第三方分析或 Search Console 数据。这里重点比较产品接入方式、价格可见性和生产 API 工作流。"
+          "不比较。流量判断需要第三方分析或 Search Console 数据。这里比较的是平台定位、API 接入方式、价格可见性和生产工作流。"
       },
       {
-        question: "我应该先看哪个模型？",
+        question: "为什么不单独保留 Apimart.ai 替代页？",
         answer:
-          "图片生成可以先看 gpt-image-2、qwen-image-max 或 nano-banana-2；视频生成可以先看 veo-3.1-fast。选定模型后再进入成本计算器估算预算。"
-      }
-    ]
-  }),
-  page("apimart-ai-alternative", {
-    title: "Apimart.ai 替代方案：面向生产的 AI API 网关 | CrazyRouter",
-    description: "正在寻找 Apimart.ai 替代方案？比较 CrazyRouter 在生产 AI API 路由、价格可见性和文档化接入上的能力。",
-    eyebrow: "替代方案页面",
-    h1: "面向生产接入的 Apimart.ai 替代方案",
-    intro:
-      "如果 Apimart.ai 解决的是 API 发现问题，CrazyRouter 要解决的是下一步：把图片、视频和聊天模型调用放到一层文档化的生产 API 网关之后。",
-    primaryKeyword: "apimart 替代",
-    secondaryKeywords: ["apimart.ai 替代", "apimart alternatives", "ai api 市场替代"],
-    cta: "评估 CrazyRouter",
-    intent:
-      "搜索 Apimart 替代方案的用户需要判断标准、迁移路径和真实 API 工作负载的证据，而不是只有营销口号。",
-    sections: [
-      {
-        heading: "为什么团队会离开纯 API 市场",
-        body:
-          "发现阶段很有用，但生产团队需要稳定 Base URL、一致认证、端点级示例、可自动化读取的价格数据，以及不重写所有集成也能比较模型的路径。"
-      },
-      {
-        heading: "迁移步骤",
-        body:
-          "不要一次迁移所有工作负载。先选一个模型族，确认它在价格页存在，用密钥跑 GET /v1/models，再发一次 POST 请求，并记录成本、时延和失败类型。",
-        bullets: [
-          "图片测试可以先从 gpt-image-2 或 qwen-image-max 开始。",
-          "短视频测试可以从 veo-3.1-fast 开始。",
-          "扩大生产流量前，先用成本计算器估算有效产出成本。"
-        ]
-      },
-      {
-        heading: "接入入口",
-        body:
-          "API 请求默认使用 https://cn.crazyrouter.com，例如 OpenAI 兼容客户端填写 https://cn.crazyrouter.com/v1。账号登录、充值、控制台和消费记录继续使用 https://crazyrouter.com。"
-      }
-    ],
-    faqs: [
-      {
-        question: "CrazyRouter 更适合谁？",
-        answer:
-          "更适合希望用一层统一接入覆盖多个支持模型，并需要价格可见、文档明确和端点行为可复查的开发者与团队。"
-      },
-      {
-        question: "是否需要马上迁移所有调用？",
-        answer:
-          "不需要。建议先选一个模型族做小流量验证，再按日志、成本和失败率决定下一步。"
+          "Apimart.ai 只是发现型平台中的一个例子。对正在选型的开发者来说，把 Apimart.ai、OpenRouter、AIML API、Requesty、Eden AI、Replicate 与 CrazyRouter 放在同一张决策框架里更有帮助。"
       }
     ]
   }),

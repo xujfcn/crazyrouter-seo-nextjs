@@ -20,11 +20,8 @@ export function SiteHeader() {
           <Link href={isZh ? "/zh/guide/ai-api-cost-calculator" : "/guide/ai-api-cost-calculator"} className="hover:text-ink">
             {isZh ? "计算器" : "Calculator"}
           </Link>
-          <Link href={isZh ? "/zh/guide/crazyrouter-vs-apimart" : "/guide/crazyrouter-vs-apimart"} className="hover:text-ink">
+          <Link href={isZh ? "/zh/guide/ai-api-platform-comparison" : "/guide/ai-api-platform-comparison"} className="hover:text-ink">
             {isZh ? "对比" : "Compare"}
-          </Link>
-          <Link href={isZh ? "/zh/guide/apimart-ai-alternative" : "/guide/apimart-ai-alternative"} className="hover:text-ink">
-            {isZh ? "替代方案" : "Alternative"}
           </Link>
           <Link href={isZh ? "/guide" : "/zh/guide"} className="hover:text-ink">
             {isZh ? "English" : "中文"}

@@ -29,11 +29,8 @@ export function SiteFooter() {
         </div>
         <div>
           <div className="font-semibold text-ink">{isZh ? "对比" : "Compare"}</div>
-          <Link href={isZh ? "/zh/guide/crazyrouter-vs-apimart" : "/guide/crazyrouter-vs-apimart"} className="mt-2 block hover:text-ink">
-            {isZh ? "CrazyRouter vs Apimart 中文对比" : "CrazyRouter vs Apimart"}
-          </Link>
-          <Link href={isZh ? "/zh/guide/apimart-ai-alternative" : "/guide/apimart-ai-alternative"} className="mt-2 block hover:text-ink">
-            {isZh ? "Apimart 替代方案" : "Apimart Alternative"}
+          <Link href={isZh ? "/zh/guide/ai-api-platform-comparison" : "/guide/ai-api-platform-comparison"} className="mt-2 block hover:text-ink">
+            {isZh ? "AI API 平台对比" : "AI API Platform Comparison"}
           </Link>
         </div>
         <div>

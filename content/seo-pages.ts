@@ -345,7 +345,7 @@ export const seoPages: SeoPage[] = [
       {
         heading: "Current public contract",
         body:
-          "The docs currently cover text-to-video and single-image-to-video at the customer contract level. Reference assets, start/end frames, audio-enabled rows, and 4K are present in pricing details as beta or provider capabilities, but should not be promised as the default public route until verification is closed.",
+          "The public Veo guide currently covers text-to-video and single-image-to-video. For reference assets, start/end frames, audio-enabled rows, or 4K output, check the current Veo docs and pricing rules before adding them to a production workflow.",
         bullets: [
           "Creation: POST https://cn.crazyrouter.com/v1/video/create.",
           "Query: GET https://cn.crazyrouter.com/v1/video/query?id={task_id}.",
@@ -373,7 +373,7 @@ export const seoPages: SeoPage[] = [
       "A cinematic shot of a spaceship landing on Mars, dust clouds rising"
     ),
     testEvidence: authenticatedEvidence,
-    related: ["gpt-image-2-api", "ai-api-cost-calculator", "crazyrouter-vs-apimart"]
+    related: ["gpt-image-2-api", "ai-api-cost-calculator", "ai-api-platform-comparison"]
   },
   {
     kind: "model",
@@ -601,20 +601,20 @@ print(response.data[0].url)`
   },
   {
     kind: "comparison",
-    slug: "crazyrouter-vs-apimart",
-    title: "CrazyRouter vs Apimart.ai | AI API Platform Comparison",
+    slug: "ai-api-platform-comparison",
+    title: "AI API Platform Comparison for Production Teams | CrazyRouter",
     description:
-      "Compare CrazyRouter and Apimart.ai for AI API discovery, production routing, pricing data, and developer integration workflow.",
-    eyebrow: "Competitor Comparison",
-    h1: "CrazyRouter vs Apimart.ai",
+      "Compare CrazyRouter with AI API marketplaces and model gateways such as Apimart.ai, OpenRouter, AIML API, Requesty, Eden AI, and Replicate.",
+    eyebrow: "Platform Comparison",
+    h1: "AI API platform comparison",
     intro:
-      "If you are comparing Apimart.ai and CrazyRouter, the key question is the job to be done: API discovery, or a documented production gateway for billable model calls.",
-    primaryKeyword: "crazyrouter vs apimart",
-    secondaryKeywords: ["apimart alternative", "apimart.ai alternative", "ai api marketplace"],
-    cta: "Compare production routing",
+      "Teams evaluating AI API platforms usually compare discovery marketplaces, model routers, and production gateways. CrazyRouter is strongest when you need standard model names, predictable endpoints, visible pricing, and console records for billable model calls.",
+    primaryKeyword: "ai api platform comparison",
+    secondaryKeywords: ["apimart alternative", "openrouter alternative", "aiml api alternative", "ai api marketplace"],
+    cta: "Compare API platforms",
     updatedAt: "2026-06-06",
     intent:
-      "People searching this comparison are usually deciding whether to browse API options or standardize one operational gateway for model calls.",
+      "Use this comparison when you are choosing where production traffic should run after initial model discovery is complete.",
     docsRefs: [
       "crazyrouter-docs/llms-guide.mdx",
       "crazyrouter-docs/api-endpoint.mdx",
@@ -623,97 +623,54 @@ print(response.data[0].url)`
     pricingModels: pricingRefs(["gpt-image-2", "veo-3.1", "nano-banana-2", "grok-4-image"]),
     sections: [
       {
-        heading: "Short decision",
+        heading: "Quick decision",
         body:
-          "Use Apimart.ai-style discovery when the job is browsing available APIs. Use CrazyRouter when the job is production integration: one base URL, bearer auth, pricing rows, endpoint types, logs, and model-specific documentation."
+          "Discovery-first platforms help you browse providers and model categories. CrazyRouter is better suited when your next step is shipping an integration with one API base, Bearer authentication, pricing rows, endpoint mappings, and usage records."
       },
       {
-        heading: "What CrazyRouter provides",
+        heading: "How the main options differ",
         body:
-          "CrazyRouter brings the core integration pieces into one workflow: public pricing data, endpoint mappings, model guides, copyable cURL examples, and console consumption records.",
+          "These platforms overlap, but they optimize for different workflows. The right choice depends on whether you need broad discovery, OpenAI-compatible model routing, workflow-oriented provider aggregation, or a production gateway with account and billing records.",
+        bullets: [
+          "Apimart.ai: useful when the first job is browsing and comparing API categories.",
+          "OpenRouter: strong for routing many LLMs through an OpenAI-compatible interface.",
+          "AIML API: useful when you want one API surface for many AI models and modalities.",
+          "Requesty: focused on AI gateway controls such as routing, observability, and key management.",
+          "Eden AI: strong for aggregating AI providers across workflow categories.",
+          "Replicate: strong for running hosted community and open-source models."
+        ]
+      },
+      {
+        heading: "Where CrazyRouter fits",
+        body:
+          "CrazyRouter should be evaluated when the buyer already knows the workload they want to run: image generation, video generation, chat, embeddings, or a fallback chain. API calls use https://cn.crazyrouter.com; account login, recharge, console, and usage records use https://crazyrouter.com.",
         bullets: [
           "Pricing truth source: GET https://cn.crazyrouter.com/api/pricing.",
           "OpenAI-compatible base URL: https://cn.crazyrouter.com/v1.",
           "Model pages link to exact docs files and endpoint types.",
-          "Account creation, recharge, and usage logs are handled at https://crazyrouter.com."
+          "Cost planning uses actual model rows rather than generic category estimates."
         ]
       },
       {
-        heading: "How to evaluate",
+        heading: "Evaluation workflow",
         body:
-          "Choose one real model guide, copy the standard model name, verify the endpoint, estimate monthly spend, then create an API key on CrazyRouter when you are ready to test."
+          "Pick one workload, copy the standard model name, confirm the endpoint, estimate monthly spend, then run a small request set with your CrazyRouter API key. For image work, start with gpt-image-2, qwen-image-max, or nano-banana-2. For video work, start with veo-3.1-fast."
       }
     ],
     faqs: [
       {
-        question: "Is this page claiming CrazyRouter has more traffic than Apimart.ai?",
+        question: "Is this a traffic comparison between platforms?",
         answer:
-          "No. Traffic claims require third-party analytics or Search Console data. This comparison focuses on product workflow, pricing visibility, and production API routing."
+          "No. Traffic claims require third-party analytics or Search Console data. This guide compares platform fit, API workflow, pricing visibility, and production routing."
       },
       {
-        question: "Which model should I evaluate first?",
+        question: "Why not keep one page only about Apimart.ai?",
         answer:
-          "For image generation, start with gpt-image-2, qwen-image-max, or nano-banana-2. For video generation, start with veo-3.1-fast, then estimate budget in the calculator."
+          "Apimart.ai is only one discovery-style option. A broader platform comparison is more useful for teams choosing between marketplaces, model routers, provider aggregators, and production gateways."
       }
     ],
     testEvidence: authenticatedEvidence,
-    related: ["apimart-ai-alternative", "ai-api-cost-calculator", "gpt-image-2-api"]
-  },
-  {
-    kind: "alternative",
-    slug: "apimart-ai-alternative",
-    title: "Apimart.ai Alternative for Production AI APIs | CrazyRouter",
-    description:
-      "Looking for an Apimart.ai alternative? Compare CrazyRouter for production AI API routing, pricing visibility, and docs-backed model integration.",
-    eyebrow: "Alternative Page",
-    h1: "A production-focused Apimart.ai alternative",
-    intro:
-      "If Apimart.ai helped you think about API discovery, CrazyRouter should help with the next job: putting image, video, and chat model calls behind one documented production API layer.",
-    primaryKeyword: "apimart alternative",
-    secondaryKeywords: ["apimart.ai alternative", "best apimart alternatives", "ai api marketplace alternative"],
-    cta: "Evaluate CrazyRouter",
-    updatedAt: "2026-06-06",
-    intent:
-      "Searchers looking for an Apimart alternative want criteria, a practical migration path, and proof that the alternative can handle real API work.",
-    docsRefs: [
-      "crazyrouter-docs/api-endpoint.mdx",
-      "crazyrouter-docs/authentication.mdx",
-      "crazyrouter-docs/llms-guide.mdx"
-    ],
-    pricingModels: pricingRefs(["gpt-image-2", "veo-3.1-fast", "qwen-image-max", "nano-banana-2"]),
-    sections: [
-      {
-        heading: "Why teams look beyond an API marketplace",
-        body:
-          "Discovery is useful early, but production teams need a stable base URL, consistent authentication, endpoint-specific examples, pricing data they can automate against, and a path for model comparison without rewriting every integration."
-      },
-      {
-        heading: "Migration path",
-        body:
-          "Do not migrate every workload at once. Pick one model family, confirm it exists in Pricing, run GET /v1/models with your key, make one POST request, and log cost, latency, and failure class.",
-        bullets: [
-          "Start with gpt-image-2 or qwen-image-max for image tests.",
-          "Start with veo-3.1-fast for short video tests.",
-          "Use the calculator to model accepted-output cost before moving production volume."
-        ]
-      },
-      {
-        heading: "Integration entry points",
-        body:
-          "API requests should use https://cn.crazyrouter.com, such as https://cn.crazyrouter.com/v1 for OpenAI-compatible clients. Account login, recharge, console, and usage records remain on https://crazyrouter.com."
-      }
-    ],
-    faqs: [
-      commonFaqs.pricingTruth,
-      commonFaqs.baseUrl,
-      {
-        question: "Who is CrazyRouter best for?",
-        answer:
-          "CrazyRouter is best for developers and teams that want one integration layer across supported models, with pricing visibility and docs-backed endpoint behavior."
-      }
-    ],
-    testEvidence: authenticatedEvidence,
-    related: ["crazyrouter-vs-apimart", "gpt-image-2-api", "ai-api-cost-calculator"]
+    related: ["ai-api-cost-calculator", "gpt-image-2-api", "veo-3-1-api"]
   },
   {
     kind: "tool",
