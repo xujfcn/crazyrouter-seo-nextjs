@@ -1,41 +1,25 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import {
-  findPage,
-  getPagePath,
-  pageKindPath,
-  seoPages,
-  type PageKind
-} from "@/content/seo-pages";
+import { findPageBySlug, getPagePath, seoPages } from "@/content/seo-pages";
 import { JsonLd } from "@/components/json-ld";
 import { SeoPageTemplate } from "@/components/seo-page-template";
 import { siteConfig } from "@/lib/site";
 import { breadcrumbJsonLd, faqJsonLd, softwareJsonLd } from "@/lib/structured-data";
 
-const pathToKind = Object.fromEntries(
-  Object.entries(pageKindPath).map(([kind, path]) => [path, kind])
-) as Record<string, PageKind>;
-
 type PageParams = {
   params: {
-    section: string;
     slug: string;
   };
 };
 
 export function generateStaticParams() {
-  return seoPages.map((page) => {
-    const [, section] = getPagePath(page).split("/");
-    return {
-      section,
-      slug: page.slug
-    };
-  });
+  return seoPages.map((page) => ({
+    slug: page.slug
+  }));
 }
 
 export function generateMetadata({ params }: PageParams): Metadata {
-  const kind = pathToKind[params.section];
-  const page = kind ? findPage(kind, params.slug) : undefined;
+  const page = findPageBySlug(params.slug);
 
   if (!page) {
     return {};
@@ -59,9 +43,8 @@ export function generateMetadata({ params }: PageParams): Metadata {
   };
 }
 
-export default function SeoDynamicPage({ params }: PageParams) {
-  const kind = pathToKind[params.section];
-  const page = kind ? findPage(kind, params.slug) : undefined;
+export default function GuidePage({ params }: PageParams) {
+  const page = findPageBySlug(params.slug);
 
   if (!page) {
     notFound();

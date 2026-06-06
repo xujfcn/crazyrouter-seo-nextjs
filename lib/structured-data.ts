@@ -3,7 +3,6 @@ import { getPagePath, type SeoPage } from "@/content/seo-pages";
 
 export function breadcrumbJsonLd(page: SeoPage) {
   const path = getPagePath(page);
-  const section = path.split("/")[1];
 
   return {
     "@context": "https://schema.org",
@@ -18,8 +17,8 @@ export function breadcrumbJsonLd(page: SeoPage) {
       {
         "@type": "ListItem",
         position: 2,
-        name: section,
-        item: `${siteConfig.url}/${section}`
+        name: "Guide",
+        item: `${siteConfig.url}/guide`
       },
       {
         "@type": "ListItem",

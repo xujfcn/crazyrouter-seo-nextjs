@@ -12,11 +12,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.8
     },
+    {
+      url: `${siteConfig.url}/guide`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8
+    },
     ...seoPages.map((page) => ({
       url: `${siteConfig.url}${getPagePath(page)}`,
       lastModified: new Date(page.updatedAt),
       changeFrequency: "weekly" as const,
-      priority: page.kind === "compare" || page.kind === "alternative" ? 0.9 : 0.8
+      priority: page.kind === "comparison" || page.kind === "alternative" ? 0.9 : 0.8
     }))
   ];
 }

@@ -1,0 +1,57 @@
+{
+  "testedAt": "2026-06-06",
+  "baseUrl": "https://cn.crazyrouter.com",
+  "checks": [
+    {
+      "method": "GET",
+      "url": "https://cn.crazyrouter.com/api/pricing",
+      "status": 200,
+      "purpose": "Confirm public Pricing API is reachable and can be used as the SEO page model source."
+    },
+    {
+      "method": "GET",
+      "url": "https://cn.crazyrouter.com/v1/models",
+      "status": 401,
+      "purpose": "Confirm protected model availability checks require Authorization: Bearer YOUR_API_KEY."
+    },
+    {
+      "method": "GET",
+      "url": "https://cn.crazyrouter.com/v1/models",
+      "status": 200,
+      "purpose": "Authenticated check with CRAZYROUTER_API_KEY confirmed the target guide models are visible to the local API key.",
+      "availableModels": [
+        "sora-2",
+        "sora-2-pro",
+        "gpt-image-2",
+        "veo-3.1-fast",
+        "veo-3.1",
+        "nano-banana-2",
+        "nano-banana-pro",
+        "nano-banana",
+        "grok-4-image",
+        "qwen-image-plus",
+        "qwen-image-max",
+        "qwen-image-2.0"
+      ]
+    },
+    {
+      "method": "POST",
+      "url": "https://cn.crazyrouter.com/v1/images/generations",
+      "status": 401,
+      "purpose": "Confirm image generation route exists behind bearer-token authentication."
+    },
+    {
+      "method": "POST",
+      "url": "https://cn.crazyrouter.com/v1/video/create",
+      "status": 401,
+      "purpose": "Confirm unified video route exists behind bearer-token authentication."
+    },
+    {
+      "method": "GET",
+      "url": "https://cn.crazyrouter.com/v1/chat/completions",
+      "status": 404,
+      "purpose": "Confirm chat completions must be called with the documented POST method."
+    }
+  ],
+  "boundary": "Authenticated model-list validation was completed. Paid generation calls were not run automatically; pages distinguish model availability from billable image or video generation validation."
+}

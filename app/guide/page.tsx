@@ -1,30 +1,37 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { seoPages, getPagePath } from "@/content/seo-pages";
+import { getPagePath, seoPages } from "@/content/seo-pages";
 
-export default function HomePage() {
-  const featured = seoPages.filter((page) =>
-    ["model", "tool", "comparison", "alternative"].includes(page.kind)
-  );
+export const metadata: Metadata = {
+  title: "CrazyRouter API Guides",
+  description:
+    "Docs-aligned CrazyRouter model API guides, comparison pages, and calculator pages under the /guide namespace.",
+  alternates: {
+    canonical: "/guide"
+  }
+};
 
+export default function GuideIndexPage() {
   return (
     <main>
       <section className="border-b border-line bg-panel">
         <div className="mx-auto max-w-6xl px-5 py-14 md:py-20">
-          <div className="text-sm font-semibold uppercase tracking-wide text-brand">Guide namespace</div>
+          <div className="text-sm font-semibold uppercase tracking-wide text-brand">Guide hub</div>
           <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight text-ink md:text-6xl">
-            CrazyRouter AI API guides
+            CrazyRouter API guide pages
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-muted">
-            Model, competitor, and calculator pages generated under /guide/* so they stay separate from
-            existing tool routes while staying aligned with the live Pricing API and CrazyRouter docs.
+            Model guides, competitor pages, and the API cost calculator share one /guide namespace and
+            use the live Pricing API snapshot as their model source.
           </p>
         </div>
       </section>
+
       <section className="mx-auto max-w-6xl px-5 py-12">
         <div className="grid gap-4 md:grid-cols-2">
-          {featured.map((page) => (
+          {seoPages.map((page) => (
             <Link
-              key={`${page.kind}-${page.slug}`}
+              key={page.slug}
               href={getPagePath(page)}
               className="rounded-lg border border-line bg-white p-6 hover:border-brand"
             >
