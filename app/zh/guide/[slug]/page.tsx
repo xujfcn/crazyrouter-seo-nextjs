@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { findPageBySlug, getPagePath, seoPages } from "@/content/seo-pages";
+import { getPagePath } from "@/content/seo-pages";
+import { findZhPageBySlug, zhSeoPages } from "@/content/seo-pages.zh";
 import { JsonLd } from "@/components/json-ld";
 import { SeoPageTemplate } from "@/components/seo-page-template";
 import { siteConfig } from "@/lib/site";
@@ -13,20 +14,20 @@ type PageParams = {
 };
 
 export function generateStaticParams() {
-  return seoPages.map((page) => ({
+  return zhSeoPages.map((page) => ({
     slug: page.slug
   }));
 }
 
 export function generateMetadata({ params }: PageParams): Metadata {
-  const page = findPageBySlug(params.slug);
+  const page = findZhPageBySlug(params.slug);
 
   if (!page) {
     return {};
   }
 
-  const path = getPagePath(page);
-  const zhPath = getPagePath(page, "zh");
+  const path = getPagePath(page, "zh");
+  const enPath = getPagePath(page, "en");
 
   return {
     title: page.title,
@@ -34,8 +35,8 @@ export function generateMetadata({ params }: PageParams): Metadata {
     alternates: {
       canonical: path,
       languages: {
-        en: path,
-        "zh-CN": zhPath
+        en: enPath,
+        "zh-CN": path
       }
     },
     keywords: [page.primaryKeyword, ...page.secondaryKeywords],
@@ -44,13 +45,13 @@ export function generateMetadata({ params }: PageParams): Metadata {
       description: page.description,
       url: `${siteConfig.url}${path}`,
       type: "article",
-      locale: "en_US"
+      locale: "zh_CN"
     }
   };
 }
 
-export default function GuidePage({ params }: PageParams) {
-  const page = findPageBySlug(params.slug);
+export default function ZhGuidePage({ params }: PageParams) {
+  const page = findZhPageBySlug(params.slug);
 
   if (!page) {
     notFound();
@@ -58,10 +59,10 @@ export default function GuidePage({ params }: PageParams) {
 
   return (
     <>
-      <JsonLd data={breadcrumbJsonLd(page)} />
+      <JsonLd data={breadcrumbJsonLd(page, "zh")} />
       <JsonLd data={faqJsonLd(page)} />
       <JsonLd data={softwareJsonLd(page)} />
-      <SeoPageTemplate page={page} />
+      <SeoPageTemplate page={page} locale="zh" pages={zhSeoPages} />
     </>
   );
 }

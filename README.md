@@ -13,6 +13,8 @@ All generated SEO pages live under one namespace:
 - `/guide/apimart-ai-alternative`
 - `/guide/ai-api-cost-calculator`
 
+Chinese versions live under `/zh/guide/*` with the same slugs, for example `/zh/guide/gpt-image-2-api`.
+
 This avoids conflicts with existing CrazyRouter Tools routes such as `/tools/pricing-calculator/`, `/tools/model-comparison/`, and `/tools/model-radar/`.
 
 ## Data Sources

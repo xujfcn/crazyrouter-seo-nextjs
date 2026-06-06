@@ -1,6 +1,7 @@
 import { getEndpointPath, getPricingSummary, type PricingSummary } from "@/lib/pricing";
 
 export type PageKind = "model" | "comparison" | "alternative" | "tool";
+export type PageLocale = "en" | "zh";
 
 export type TestEvidence = {
   label: string;
@@ -822,8 +823,8 @@ function preset(
   };
 }
 
-export function getPagePath(page: SeoPage) {
-  return `/guide/${page.slug}`;
+export function getPagePath(page: SeoPage, locale: PageLocale = "en") {
+  return locale === "zh" ? `/zh/guide/${page.slug}` : `/guide/${page.slug}`;
 }
 
 export function findPageBySlug(slug: string) {

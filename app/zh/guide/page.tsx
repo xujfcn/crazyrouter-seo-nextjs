@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getPagePath, seoPages } from "@/content/seo-pages";
+import { getPagePath } from "@/content/seo-pages";
+import { zhSeoPages } from "@/content/seo-pages.zh";
 
 export const metadata: Metadata = {
-  title: "CrazyRouter API Guides",
-  description:
-    "Docs-aligned CrazyRouter model API guides, comparison pages, and calculator pages under the /guide namespace.",
+  title: "CrazyRouter API 中文指南",
+  description: "CrazyRouter 模型 API、竞品对比和成本计算器的中文 SEO 指南页，统一放在 /zh/guide 路径下。",
   alternates: {
-    canonical: "/guide",
+    canonical: "/zh/guide",
     languages: {
       en: "/guide",
       "zh-CN": "/zh/guide"
@@ -15,28 +15,28 @@ export const metadata: Metadata = {
   }
 };
 
-export default function GuideIndexPage() {
+export default function ZhGuideIndexPage() {
   return (
     <main>
       <section className="border-b border-line bg-panel">
         <div className="mx-auto max-w-6xl px-5 py-14 md:py-20">
-          <div className="text-sm font-semibold uppercase tracking-wide text-brand">Guide hub</div>
+          <div className="text-sm font-semibold uppercase tracking-wide text-brand">中文指南中心</div>
           <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight text-ink md:text-6xl">
-            CrazyRouter API guide pages
+            CrazyRouter API 中文指南
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-muted">
-            Model guides, competitor pages, and the API cost calculator share one /guide namespace and
-            use the live Pricing API snapshot as their model source.
+            模型接入、竞品对比和 API 成本计算器统一放在 /zh/guide 命名空间下，并与价格 API
+            和 CrazyRouter 文档保持一致。
           </p>
         </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-5 py-12">
         <div className="grid gap-4 md:grid-cols-2">
-          {seoPages.map((page) => (
+          {zhSeoPages.map((page) => (
             <Link
               key={page.slug}
-              href={getPagePath(page)}
+              href={getPagePath(page, "zh")}
               className="rounded-lg border border-line bg-white p-6 hover:border-brand"
             >
               <div className="text-sm font-semibold uppercase tracking-wide text-brand">{page.kind}</div>

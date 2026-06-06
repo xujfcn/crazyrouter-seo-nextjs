@@ -1,8 +1,9 @@
 import { siteConfig } from "@/lib/site";
-import { getPagePath, type SeoPage } from "@/content/seo-pages";
+import { getPagePath, type PageLocale, type SeoPage } from "@/content/seo-pages";
 
-export function breadcrumbJsonLd(page: SeoPage) {
-  const path = getPagePath(page);
+export function breadcrumbJsonLd(page: SeoPage, locale: PageLocale = "en") {
+  const path = getPagePath(page, locale);
+  const guidePath = locale === "zh" ? "/zh/guide" : "/guide";
 
   return {
     "@context": "https://schema.org",
@@ -11,14 +12,14 @@ export function breadcrumbJsonLd(page: SeoPage) {
       {
         "@type": "ListItem",
         position: 1,
-        name: "Home",
+        name: locale === "zh" ? "首页" : "Home",
         item: siteConfig.url
       },
       {
         "@type": "ListItem",
         position: 2,
-        name: "Guide",
-        item: `${siteConfig.url}/guide`
+        name: locale === "zh" ? "指南" : "Guide",
+        item: `${siteConfig.url}${guidePath}`
       },
       {
         "@type": "ListItem",

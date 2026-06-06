@@ -1,10 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { CalculatorPreset } from "@/content/seo-pages";
+import type { CalculatorPreset, PageLocale } from "@/content/seo-pages";
 
 type CostCalculatorProps = {
   presets: CalculatorPreset[];
+  locale?: PageLocale;
 };
 
 const money = new Intl.NumberFormat("en-US", {
@@ -27,7 +28,55 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
 }
 
-export function CostCalculator({ presets }: CostCalculatorProps) {
+const labels = {
+  en: {
+    title: "Cost calculator",
+    description: "Estimate monthly spend with retries, fallback traffic, and accepted-output rate.",
+    snapshot: "Pricing snapshot",
+    primaryModel: "Primary model",
+    fallbackModel: "Fallback model",
+    plannedUnits: "Monthly planned units",
+    unitHint: "Uses the unit of the selected primary model.",
+    retryRate: "Retry rate",
+    fallbackShare: "Fallback share",
+    acceptanceRate: "Accepted output rate",
+    estimatedTotal: "Estimated total",
+    billableUnits: "Billable units",
+    acceptedOutputs: "Accepted outputs",
+    acceptedCost: "Cost per accepted output",
+    route: "Route",
+    model: "Model",
+    units: "Units",
+    cost: "Cost",
+    primary: "Primary",
+    fallback: "Fallback"
+  },
+  zh: {
+    title: "API 成本计算器",
+    description: "按重试率、兜底流量和有效产出率估算每月费用。",
+    snapshot: "价格快照",
+    primaryModel: "主模型",
+    fallbackModel: "兜底模型",
+    plannedUnits: "每月计划用量",
+    unitHint: "单位跟随当前选择的主模型。",
+    retryRate: "重试率",
+    fallbackShare: "兜底流量占比",
+    acceptanceRate: "有效产出率",
+    estimatedTotal: "预估总费用",
+    billableUnits: "计费用量",
+    acceptedOutputs: "有效产出",
+    acceptedCost: "单个有效产出成本",
+    route: "路由",
+    model: "模型",
+    units: "用量",
+    cost: "费用",
+    primary: "主路由",
+    fallback: "兜底路由"
+  }
+};
+
+export function CostCalculator({ presets, locale = "en" }: CostCalculatorProps) {
+  const copy = labels[locale];
   const [primaryModel, setPrimaryModel] = useState(presets[0]?.model ?? "");
   const [fallbackModel, setFallbackModel] = useState(presets[1]?.model ?? presets[0]?.model ?? "");
   const [units, setUnits] = useState(presets[0]?.defaultUnits ?? 1000);
@@ -70,19 +119,19 @@ export function CostCalculator({ presets }: CostCalculatorProps) {
     <section className="rounded-lg border border-line bg-white p-6">
       <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
         <div>
-          <h2 className="text-2xl font-semibold text-ink">Cost calculator</h2>
+          <h2 className="text-2xl font-semibold text-ink">{copy.title}</h2>
           <p className="mt-2 max-w-2xl leading-7 text-muted">
-            Estimate monthly spend with retries, fallback traffic, and accepted-output rate.
+            {copy.description}
           </p>
         </div>
         <div className="rounded-md border border-line bg-panel px-3 py-2 text-sm text-muted">
-          Pricing snapshot: 2026-06-06
+          {copy.snapshot}: 2026-06-06
         </div>
       </div>
 
       <div className="mt-6 grid gap-5 md:grid-cols-2">
         <label className="grid gap-2 text-sm font-medium text-ink">
-          Primary model
+          {copy.primaryModel}
           <select
             value={primaryModel}
             onChange={(event) => {
@@ -101,7 +150,7 @@ export function CostCalculator({ presets }: CostCalculatorProps) {
         </label>
 
         <label className="grid gap-2 text-sm font-medium text-ink">
-          Fallback model
+          {copy.fallbackModel}
           <select
             value={fallbackModel}
             onChange={(event) => setFallbackModel(event.target.value)}
@@ -116,7 +165,7 @@ export function CostCalculator({ presets }: CostCalculatorProps) {
         </label>
 
         <label className="grid gap-2 text-sm font-medium text-ink">
-          Monthly planned units
+          {copy.plannedUnits}
           <input
             type="number"
             min="1"
@@ -124,11 +173,11 @@ export function CostCalculator({ presets }: CostCalculatorProps) {
             onChange={(event) => setUnits(clamp(Number(event.target.value), 1, 100000000))}
             className="h-11 rounded-md border border-line px-3 text-sm"
           />
-          <span className="text-xs font-normal text-muted">Uses the unit of the selected primary model.</span>
+          <span className="text-xs font-normal text-muted">{copy.unitHint}</span>
         </label>
 
         <label className="grid gap-2 text-sm font-medium text-ink">
-          Retry rate: {retryRate}%
+          {copy.retryRate}: {retryRate}%
           <input
             type="range"
             min="0"
@@ -139,7 +188,7 @@ export function CostCalculator({ presets }: CostCalculatorProps) {
         </label>
 
         <label className="grid gap-2 text-sm font-medium text-ink">
-          Fallback share: {fallbackShare}%
+          {copy.fallbackShare}: {fallbackShare}%
           <input
             type="range"
             min="0"
@@ -150,7 +199,7 @@ export function CostCalculator({ presets }: CostCalculatorProps) {
         </label>
 
         <label className="grid gap-2 text-sm font-medium text-ink">
-          Accepted output rate: {acceptanceRate}%
+          {copy.acceptanceRate}: {acceptanceRate}%
           <input
             type="range"
             min="1"
@@ -163,19 +212,19 @@ export function CostCalculator({ presets }: CostCalculatorProps) {
 
       <div className="mt-6 grid gap-4 md:grid-cols-4">
         <div className="rounded-lg border border-line bg-panel p-4">
-          <div className="text-sm text-muted">Estimated total</div>
+          <div className="text-sm text-muted">{copy.estimatedTotal}</div>
           <div className="mt-2 text-2xl font-semibold text-ink">{money.format(result.total)}</div>
         </div>
         <div className="rounded-lg border border-line bg-panel p-4">
-          <div className="text-sm text-muted">Billable units</div>
+          <div className="text-sm text-muted">{copy.billableUnits}</div>
           <div className="mt-2 text-2xl font-semibold text-ink">{Math.round(result.billableUnits).toLocaleString()}</div>
         </div>
         <div className="rounded-lg border border-line bg-panel p-4">
-          <div className="text-sm text-muted">Accepted outputs</div>
+          <div className="text-sm text-muted">{copy.acceptedOutputs}</div>
           <div className="mt-2 text-2xl font-semibold text-ink">{Math.round(result.acceptedOutputs).toLocaleString()}</div>
         </div>
         <div className="rounded-lg border border-line bg-panel p-4">
-          <div className="text-sm text-muted">Cost per accepted output</div>
+          <div className="text-sm text-muted">{copy.acceptedCost}</div>
           <div className="mt-2 text-2xl font-semibold text-ink">{unitMoney.format(result.acceptedCost)}</div>
         </div>
       </div>
@@ -184,21 +233,21 @@ export function CostCalculator({ presets }: CostCalculatorProps) {
         <table className="w-full text-left text-sm">
           <thead className="bg-panel text-muted">
             <tr>
-              <th className="px-4 py-3 font-medium">Route</th>
-              <th className="px-4 py-3 font-medium">Model</th>
-              <th className="px-4 py-3 font-medium">Units</th>
-              <th className="px-4 py-3 font-medium">Cost</th>
+              <th className="px-4 py-3 font-medium">{copy.route}</th>
+              <th className="px-4 py-3 font-medium">{copy.model}</th>
+              <th className="px-4 py-3 font-medium">{copy.units}</th>
+              <th className="px-4 py-3 font-medium">{copy.cost}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-line">
             <tr>
-              <td className="px-4 py-3">Primary</td>
+              <td className="px-4 py-3">{copy.primary}</td>
               <td className="px-4 py-3">{primary.model}</td>
               <td className="px-4 py-3">{Math.round(result.primaryUnits).toLocaleString()}</td>
               <td className="px-4 py-3">{money.format(result.primaryCost)}</td>
             </tr>
             <tr>
-              <td className="px-4 py-3">Fallback</td>
+              <td className="px-4 py-3">{copy.fallback}</td>
               <td className="px-4 py-3">{fallback.model}</td>
               <td className="px-4 py-3">{Math.round(result.fallbackUnits).toLocaleString()}</td>
               <td className="px-4 py-3">{money.format(result.fallbackCost)}</td>
