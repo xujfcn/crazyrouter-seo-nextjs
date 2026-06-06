@@ -19,7 +19,10 @@ export function SiteFooter() {
           </p>
         </div>
         <div>
-          <div className="font-semibold text-ink">{isZh ? "模型" : "Models"}</div>
+          <div className="font-semibold text-ink">{isZh ? "指南入口" : "Guide Hub"}</div>
+          <Link href={isZh ? "/zh/guide" : "/guide"} className="mt-2 block hover:text-ink">
+            {isZh ? "全部中文指南" : "All Guides"}
+          </Link>
           <Link href={isZh ? "/zh/guide/gpt-image-2-api" : "/guide/gpt-image-2-api"} className="mt-2 block hover:text-ink">
             {isZh ? "GPT Image 2 API 中文指南" : "GPT Image 2 API"}
           </Link>
