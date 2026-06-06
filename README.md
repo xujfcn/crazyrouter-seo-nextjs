@@ -4,7 +4,6 @@ Docs-aligned SEO guide pages for CrazyRouter model APIs, competitor comparisons,
 
 All generated SEO pages live under one namespace:
 
-- `/guide/sora-api`
 - `/guide/gpt-image-2-api`
 - `/guide/veo-3-1-api`
 - `/guide/nano-banana-2-api`

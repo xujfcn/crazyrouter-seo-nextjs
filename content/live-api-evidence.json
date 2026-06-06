@@ -18,10 +18,8 @@
       "method": "GET",
       "url": "https://cn.crazyrouter.com/v1/models",
       "status": 200,
-      "purpose": "Authenticated check with CRAZYROUTER_API_KEY confirmed the target guide models are visible to the local API key.",
+      "purpose": "Authenticated check with CRAZYROUTER_API_KEY confirmed the currently published target guide models are visible to the local API key.",
       "availableModels": [
-        "sora-2",
-        "sora-2-pro",
         "gpt-image-2",
         "veo-3.1-fast",
         "veo-3.1",

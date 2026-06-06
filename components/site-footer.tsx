@@ -10,9 +10,6 @@ export function SiteFooter() {
         </div>
         <div>
           <div className="font-semibold text-ink">Models</div>
-          <Link href="/guide/sora-api" className="mt-2 block hover:text-ink">
-            Sora API
-          </Link>
           <Link href="/guide/gpt-image-2-api" className="mt-2 block hover:text-ink">
             GPT Image 2 API
           </Link>

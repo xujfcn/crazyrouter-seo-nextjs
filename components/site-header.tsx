@@ -8,7 +8,7 @@ export function SiteHeader() {
           CrazyRouter Guides
         </Link>
         <nav className="hidden items-center gap-6 text-sm text-muted md:flex">
-          <Link href="/guide/sora-api" className="hover:text-ink">
+          <Link href="/guide/gpt-image-2-api" className="hover:text-ink">
             Models
           </Link>
           <Link href="/guide/ai-api-cost-calculator" className="hover:text-ink">

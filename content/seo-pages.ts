@@ -113,7 +113,7 @@ const modelAvailabilityEvidence: TestEvidence = {
   url: `${apiBase}/v1/models`,
   status: "200",
   result:
-    "Authenticated check confirmed sora-2, sora-2-pro, gpt-image-2, veo-3.1-fast, veo-3.1, nano-banana-2, nano-banana-pro, nano-banana, grok-4-image, qwen-image-plus, qwen-image-max, and qwen-image-2.0 are visible to the local CrazyRouter API key."
+    "Authenticated check confirmed gpt-image-2, veo-3.1-fast, veo-3.1, nano-banana-2, nano-banana-pro, nano-banana, grok-4-image, qwen-image-plus, qwen-image-max, and qwen-image-2.0 are visible to the local CrazyRouter API key."
 };
 
 const authenticatedEvidence = [...publicEvidence, modelAvailabilityEvidence];
@@ -272,76 +272,12 @@ function pricingRefs(models: string[]) {
   return models.map((model) => ({ model }));
 }
 
-const soraModels = ["sora-2", "sora-2-pro"];
 const veoModels = ["veo-3.1-fast", "veo-3.1"];
 const qwenModels = ["qwen-image-plus", "qwen-image-max", "qwen-image-2.0"];
 const imageModels = ["gpt-image-2", "nano-banana-2", "grok-4-image", ...qwenModels];
-const videoModels = [...soraModels, ...veoModels];
+const videoModels = veoModels;
 
 export const seoPages: SeoPage[] = [
-  {
-    kind: "model",
-    slug: "sora-api",
-    title: "Sora API Guide with CrazyRouter Pricing | CrazyRouter",
-    description:
-      "Use Sora 2 and Sora 2 Pro through CrazyRouter with docs-aligned endpoints, live Pricing page model rows, and API test evidence.",
-    eyebrow: "Video API Guide",
-    h1: "Sora API guide for Sora 2 and Sora 2 Pro",
-    intro:
-      "This guide is built only around Sora models present on the CrazyRouter Pricing page: sora-2 and sora-2-pro. It uses the documented cn.crazyrouter.com API path and keeps signup, billing, and console traffic on the main site.",
-    primaryKeyword: "sora api",
-    secondaryKeywords: ["sora 2 api", "sora api pricing", "sora 2 pro api", "openai video api"],
-    cta: "Open CrazyRouter console",
-    updatedAt: "2026-06-06",
-    intent:
-      "Developers searching for Sora API access need to confirm the current model names, endpoint shape, pricing row, and how to test a task with their own API key.",
-    docsRefs: [
-      "crazyrouter-docs/video/sora.mdx",
-      "crazyrouter-docs/video/openai-video.mdx",
-      "crazyrouter-docs/api-endpoint.mdx",
-      "crazyrouter-docs/llms-guide.mdx"
-    ],
-    pricingModels: pricingRefs(soraModels),
-    endpointType: "openai-video",
-    sections: [
-      {
-        heading: "Pricing page alignment",
-        body:
-          "The page intentionally targets only Sora rows returned by GET /api/pricing. The old generic video-model copy was removed because SEO pages must match the live Pricing page.",
-        bullets: availabilityBullets(soraModels)
-      },
-      {
-        heading: "Docs-aligned endpoint",
-        body: `For Sora, the public endpoint type is openai-video. The documented entry points are ${endpointLabel("openai-video")}, POST /v1/video/generations, and POST /v1/videos. A first integration should start with a short duration and one prompt before adding higher quality settings.`,
-        bullets: [
-          "OpenAI-compatible SDK base URL: https://cn.crazyrouter.com/v1.",
-          "Hand-written cURL uses the full path, such as https://cn.crazyrouter.com/v1/video/generations.",
-          "Task result links should be downloaded or stored by your app instead of treated as permanent storage."
-        ]
-      },
-      {
-        heading: "Production validation flow",
-        body:
-          "Start with one low-risk prompt, log task id, status, latency, failure message, and final video URL. Then compare sora-2 and sora-2-pro on accepted-output cost rather than only request price."
-      }
-    ],
-    faqs: [
-      commonFaqs.pricingTruth,
-      commonFaqs.auth,
-      {
-        question: "Should I call /v1/video/create or /v1/video/generations for Sora?",
-        answer:
-          "The Sora docs expose both. For a first Sora integration, the Sora page recommends POST /v1/video/generations because task state and metadata are easier to inspect."
-      }
-    ],
-    codeSamples: samples(
-      "sora-2",
-      "openai-video",
-      "A serene Japanese garden in spring, with cherry blossoms gently falling"
-    ),
-    testEvidence: authenticatedEvidence,
-    related: ["veo-3-1-api", "ai-api-cost-calculator", "crazyrouter-vs-apimart"]
-  },
   {
     kind: "model",
     slug: "gpt-image-2-api",
@@ -467,7 +403,7 @@ export const seoPages: SeoPage[] = [
       "A cinematic shot of a spaceship landing on Mars, dust clouds rising"
     ),
     testEvidence: [...authenticatedEvidence, protectedPostEvidence[1]],
-    related: ["sora-api", "ai-api-cost-calculator", "crazyrouter-vs-apimart"]
+    related: ["gpt-image-2-api", "ai-api-cost-calculator", "crazyrouter-vs-apimart"]
   },
   {
     kind: "model",
@@ -714,7 +650,7 @@ print(response.data[0].url)`
       "crazyrouter-docs/api-endpoint.mdx",
       "crazyrouter-docs/ai-tools.mdx"
     ],
-    pricingModels: pricingRefs(["gpt-image-2", "sora-2", "veo-3.1", "nano-banana-2"]),
+    pricingModels: pricingRefs(["gpt-image-2", "veo-3.1", "nano-banana-2", "grok-4-image"]),
     sections: [
       {
         heading: "Short decision",
@@ -751,7 +687,7 @@ print(response.data[0].url)`
       }
     ],
     testEvidence: authenticatedEvidence,
-    related: ["apimart-ai-alternative", "ai-api-cost-calculator", "sora-api"]
+    related: ["apimart-ai-alternative", "ai-api-cost-calculator", "gpt-image-2-api"]
   },
   {
     kind: "alternative",
@@ -774,7 +710,7 @@ print(response.data[0].url)`
       "crazyrouter-docs/authentication.mdx",
       "crazyrouter-docs/llms-guide.mdx"
     ],
-    pricingModels: pricingRefs(["gpt-image-2", "sora-2", "veo-3.1-fast", "qwen-image-max"]),
+    pricingModels: pricingRefs(["gpt-image-2", "veo-3.1-fast", "qwen-image-max", "nano-banana-2"]),
     sections: [
       {
         heading: "Why teams look beyond an API marketplace",
@@ -787,7 +723,7 @@ print(response.data[0].url)`
           "Do not migrate every workload at once. Pick one model family, confirm it exists in Pricing, run GET /v1/models with your key, make one POST request, and log cost, latency, and failure class.",
         bullets: [
           "Start with gpt-image-2 or qwen-image-max for image tests.",
-          "Start with sora-2 or veo-3.1-fast for short video tests.",
+          "Start with veo-3.1-fast for short video tests.",
           "Use the calculator to model accepted-output cost before moving production volume."
         ]
       },
@@ -814,13 +750,13 @@ print(response.data[0].url)`
     slug: "ai-api-cost-calculator",
     title: "AI API Cost Calculator with CrazyRouter Pricing | CrazyRouter",
     description:
-      "Estimate image and video API costs using CrazyRouter Pricing page model rows for gpt-image-2, Sora, Veo, Nano Banana, Grok, and Qwen Image.",
+      "Estimate image and video API costs using CrazyRouter Pricing page model rows for gpt-image-2, Veo, Nano Banana, Grok, and Qwen Image.",
     eyebrow: "Interactive Tool",
     h1: "AI API cost calculator",
     intro:
       "This is a real calculator page, not a placeholder. Presets are generated from the same Pricing API snapshot used by the model guides, and the controls estimate request units, retries, fallback share, and accepted-output cost.",
     primaryKeyword: "ai api cost calculator",
-    secondaryKeywords: ["openai api price calculator", "sora api cost calculator", "image api pricing calculator"],
+    secondaryKeywords: ["openai api price calculator", "video api cost calculator", "image api pricing calculator"],
     cta: "Estimate model cost",
     updatedAt: "2026-06-06",
     intent:
@@ -852,14 +788,12 @@ print(response.data[0].url)`
       }
     ],
     testEvidence: authenticatedEvidence,
-    related: ["sora-api", "gpt-image-2-api", "veo-3-1-api"],
+    related: ["gpt-image-2-api", "veo-3-1-api", "nano-banana-2-api"],
     calculatorPresets: [
       preset("gpt-image-2", "GPT Image 2", "images", 1000),
       preset("nano-banana-2", "Nano Banana 2", "images", 1000),
       preset("grok-4-image", "Grok 4 Image", "images", 1000),
       preset("qwen-image-max", "Qwen Image Max", "images", 1000),
-      preset("sora-2", "Sora 2", "video jobs", 100),
-      preset("sora-2-pro", "Sora 2 Pro", "video jobs", 100),
       preset("veo-3.1-fast", "Veo 3.1 Fast", "seconds", 800),
       preset("veo-3.1", "Veo 3.1", "seconds", 800)
     ].filter((item): item is CalculatorPreset => Boolean(item))
