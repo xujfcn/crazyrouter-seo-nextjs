@@ -246,6 +246,371 @@ const veoModels = ["veo-3.1-fast", "veo-3.1"];
 const qwenModels = ["qwen-image-plus", "qwen-image-max", "qwen-image-2.0"];
 const imageModels = ["gpt-image-2", "nano-banana-2", "grok-4-image", ...qwenModels];
 const videoModels = veoModels;
+const competitorPricingModels = [
+  "gpt-image-2",
+  "nano-banana-2",
+  "qwen-image-max",
+  "grok-4-image",
+  "veo-3.1-fast",
+  "veo-3.1"
+];
+const competitorDocsRefs = [
+  "crazyrouter-docs/llms-guide.mdx",
+  "crazyrouter-docs/api-endpoint.mdx",
+  "crazyrouter-docs/images/gpt-image.mdx",
+  "crazyrouter-docs/video/unified.mdx"
+];
+
+type AlternativeInput = {
+  slug: string;
+  title: string;
+  description: string;
+  h1: string;
+  intro: string;
+  primaryKeyword: string;
+  secondaryKeywords: string[];
+  intent: string;
+  sections: PageSection[];
+  codeModel: string;
+  codeEndpointType: string;
+  prompt: string;
+  related?: string[];
+};
+
+function alternativePage(input: AlternativeInput): SeoPage {
+  return {
+    kind: "alternative",
+    slug: input.slug,
+    title: input.title,
+    description: input.description,
+    eyebrow: "Platform Alternative",
+    h1: input.h1,
+    intro: input.intro,
+    primaryKeyword: input.primaryKeyword,
+    secondaryKeywords: input.secondaryKeywords,
+    cta: "Start with CrazyRouter",
+    updatedAt: "2026-06-06",
+    intent: input.intent,
+    docsRefs: competitorDocsRefs,
+    pricingModels: pricingRefs(competitorPricingModels),
+    sections: input.sections,
+    faqs: [],
+    codeSamples: samples(input.codeModel, input.codeEndpointType, input.prompt),
+    testEvidence: authenticatedEvidence,
+    related: input.related ?? ["ai-api-platform-comparison", "ai-api-cost-calculator", "gpt-image-2-api"]
+  };
+}
+
+const competitorAlternativePages: SeoPage[] = [
+  alternativePage({
+    slug: "fal-ai-alternative",
+    title: "fal.ai Alternative for Production Image and Video APIs | CrazyRouter",
+    description:
+      "Compare fal.ai and CrazyRouter for production image and video API work: model access, pricing visibility, endpoints, and migration steps.",
+    h1: "fal.ai alternative for production API teams",
+    intro:
+      "fal.ai is strong for generative media builders who want a large model marketplace and serverless model execution. CrazyRouter is the practical alternative when the work has moved from model exploration to stable API calls, visible pricing rows, and account records for production usage.",
+    primaryKeyword: "fal ai alternative",
+    secondaryKeywords: ["fal.ai alternative", "fal api alternative", "fal ai pricing alternative"],
+    intent:
+      "Use this comparison when your team already knows the image or video workload it wants to run and needs a simpler production gateway around standard model names, endpoint examples, and spend records.",
+    codeModel: "gpt-image-2",
+    codeEndpointType: "image-generation",
+    prompt: "A clean product photo of a black wireless headset on a white background",
+    sections: [
+      {
+        heading: "When CrazyRouter is the better fit",
+        body:
+          "Choose CrazyRouter when you want image, video, chat, and embedding calls behind one operational API layer rather than a model-marketplace workflow. API requests use https://cn.crazyrouter.com, while login, recharge, API keys, and usage records stay on https://crazyrouter.com.",
+        bullets: [
+          "Standard model names are copied directly from the CrazyRouter pricing catalog.",
+          "OpenAI-compatible image calls use POST https://cn.crazyrouter.com/v1/images/generations.",
+          "Video creation uses documented CrazyRouter video paths such as POST https://cn.crazyrouter.com/v1/video/create."
+        ]
+      },
+      {
+        heading: "Where fal.ai remains strong",
+        body:
+          "fal.ai is still a strong choice when you need fal-specific model endpoints, marketplace-native examples, or custom serverless model deployment. CrazyRouter should not be treated as a replacement for every fal Serverless use case."
+      },
+      {
+        heading: "Migration path",
+        body:
+          "Start with one workload, usually image generation or short video generation. Pick a standard CrazyRouter model name, copy the endpoint, run a small request set, then compare accepted-output cost in the CrazyRouter console before moving recurring traffic.",
+        bullets: availabilityBullets(["gpt-image-2", "nano-banana-2", "qwen-image-max", "veo-3.1-fast"])
+      },
+      {
+        heading: "Decision summary",
+        body:
+          "Use fal.ai for marketplace exploration and custom serverless execution. Use CrazyRouter when production needs clear model rows, consistent API authentication, visible billing, and a gateway your backend can keep stable."
+      }
+    ]
+  }),
+  alternativePage({
+    slug: "wavespeed-ai-alternative",
+    title: "WaveSpeed AI Alternative for API Production Workloads | CrazyRouter",
+    description:
+      "Compare WaveSpeed AI and CrazyRouter for image, video, and multimodal API workflows with visible pricing and documented endpoint paths.",
+    h1: "WaveSpeed AI alternative for production API workflows",
+    intro:
+      "WaveSpeed AI focuses on broad creative model access, fast generation, and multiple integration surfaces. CrazyRouter is a focused alternative for teams that want production API calls tied to standard model names, pricing rows, and console usage records.",
+    primaryKeyword: "wavespeed ai alternative",
+    secondaryKeywords: ["wavespeed alternative", "wavespeed api alternative", "wavespeed ai pricing"],
+    intent:
+      "Use this comparison when you are moving from playground-style creative generation into a backend API integration that must be easy to price, audit, and maintain.",
+    codeModel: "veo-3.1-fast",
+    codeEndpointType: "unified-video",
+    prompt: "A cinematic 5 second shot of a glass bottle rotating on a studio turntable",
+    sections: [
+      {
+        heading: "When CrazyRouter is the better fit",
+        body:
+          "CrazyRouter is a better fit when your team wants one production-oriented gateway for selected model families rather than the widest possible creative catalog. The same account can manage API keys, recharge, and usage records on https://crazyrouter.com while requests go to https://cn.crazyrouter.com.",
+        bullets: [
+          "Model names and endpoint types are visible before implementation.",
+          "Pricing cards use the CrazyRouter pricing API snapshot, not generic category estimates.",
+          "The code path can stay close to OpenAI-compatible image and chat clients."
+        ]
+      },
+      {
+        heading: "Where WaveSpeed AI remains strong",
+        body:
+          "WaveSpeed AI is a strong option when your team wants a very broad creative catalog, desktop or workflow integrations, or platform-specific speed claims around supported models."
+      },
+      {
+        heading: "Migration path",
+        body:
+          "Choose one model family first. For image generation, test gpt-image-2, nano-banana-2, or qwen-image-max. For video generation, test veo-3.1-fast before trying the quality route.",
+        bullets: availabilityBullets(["gpt-image-2", "nano-banana-2", "qwen-image-max", "veo-3.1-fast", "veo-3.1"])
+      },
+      {
+        heading: "Decision summary",
+        body:
+          "Use WaveSpeed AI when catalog breadth and creative tooling are the top priority. Use CrazyRouter when the priority is a controlled backend integration with explicit model rows, endpoint paths, and billing records."
+      }
+    ]
+  }),
+  alternativePage({
+    slug: "piapi-alternative",
+    title: "PiAPI Alternative for Stable Image and Video API Access | CrazyRouter",
+    description:
+      "Compare PiAPI and CrazyRouter for teams that need production-ready image and video APIs with documented model names and pricing visibility.",
+    h1: "PiAPI alternative for stable image and video APIs",
+    intro:
+      "PiAPI is often evaluated for access to creative models and unofficial or third-party model workflows. CrazyRouter is the better fit when your production code should rely on documented CrazyRouter model names, visible prices, and standard endpoint paths.",
+    primaryKeyword: "piapi alternative",
+    secondaryKeywords: ["piapi ai alternative", "midjourney api alternative", "piapi pricing alternative"],
+    intent:
+      "Use this comparison when your team wants to reduce dependence on model-specific task APIs and move supported image or video workloads into a clearer production gateway.",
+    codeModel: "gpt-image-2",
+    codeEndpointType: "image-generation",
+    prompt: "A high detail ecommerce image of a stainless steel water bottle on a gray background",
+    sections: [
+      {
+        heading: "When CrazyRouter is the better fit",
+        body:
+          "CrazyRouter is better when you can map the workload to supported public models such as gpt-image-2, nano-banana-2, qwen-image-max, grok-4-image, or Veo 3.1. The API contract is easier to audit because each page ties the model name to a price row and endpoint type.",
+        bullets: [
+          "Image generation uses POST https://cn.crazyrouter.com/v1/images/generations.",
+          "Unified video creation uses POST https://cn.crazyrouter.com/v1/video/create.",
+          "Account, recharge, API keys, and usage records use https://crazyrouter.com."
+        ]
+      },
+      {
+        heading: "Where PiAPI remains strong",
+        body:
+          "PiAPI can remain useful if your workflow depends on PiAPI-specific Midjourney, music, or creative task actions that are not part of CrazyRouter's current public pricing catalog."
+      },
+      {
+        heading: "Migration path",
+        body:
+          "List the exact PiAPI actions in your product, then separate them into image generation, image editing, video generation, and model-specific actions. Move only the supported CrazyRouter workloads first, and keep unavailable actions on their existing provider until a documented model row exists.",
+        bullets: availabilityBullets(["gpt-image-2", "nano-banana-2", "qwen-image-max", "grok-4-image"])
+      },
+      {
+        heading: "Decision summary",
+        body:
+          "Use PiAPI for PiAPI-specific creative task APIs. Use CrazyRouter for supported production workloads where stable model names, endpoint examples, and cost records matter more than model-specific task features."
+      }
+    ]
+  }),
+  alternativePage({
+    slug: "cometapi-alternative",
+    title: "CometAPI Alternative for Production AI API Access | CrazyRouter",
+    description:
+      "Compare CometAPI and CrazyRouter for production AI API routing, model naming, endpoint clarity, pricing visibility, and migration planning.",
+    h1: "CometAPI alternative for production AI API access",
+    intro:
+      "CometAPI is usually considered by teams that want broad AI model access through one provider. CrazyRouter is a focused alternative when selected models need clearer price rows, endpoint mappings, and console records before production traffic moves.",
+    primaryKeyword: "cometapi alternative",
+    secondaryKeywords: ["comet api alternative", "cometapi pricing", "ai api alternative"],
+    intent:
+      "Use this comparison when broad model access is useful, but your backend team needs tighter control over model naming, endpoint paths, and billing verification.",
+    codeModel: "gpt-image-2",
+    codeEndpointType: "image-generation",
+    prompt: "A polished landing page hero image of an AI developer console on a laptop",
+    sections: [
+      {
+        heading: "When CrazyRouter is the better fit",
+        body:
+          "CrazyRouter works well when production calls need a clear contract: a copied model name, an endpoint from the docs, and a price row that can be checked before launch. This is especially helpful for teams that need to explain monthly spend to product or finance stakeholders.",
+        bullets: [
+          "Pricing source: GET https://cn.crazyrouter.com/api/pricing.",
+          "OpenAI-compatible Base URL: https://cn.crazyrouter.com/v1.",
+          "Console and billing records: https://crazyrouter.com."
+        ]
+      },
+      {
+        heading: "Where CometAPI remains strong",
+        body:
+          "CometAPI can be a good fit when the main requirement is access to a broad and frequently changing model catalog. CrazyRouter is intentionally better for the subset of models it exposes with documented pricing and endpoint behavior."
+      },
+      {
+        heading: "Migration path",
+        body:
+          "Start by replacing one high-volume call path, not the whole catalog. Verify the CrazyRouter model row, run a small batch, compare latency and accepted-output cost, then move the next call path.",
+        bullets: availabilityBullets(["gpt-image-2", "nano-banana-2", "qwen-image-max", "veo-3.1-fast"])
+      },
+      {
+        heading: "Decision summary",
+        body:
+          "Use CometAPI when catalog breadth is the primary requirement. Use CrazyRouter when the production priority is model clarity, pricing visibility, and a narrower set of documented workflows."
+      }
+    ]
+  }),
+  alternativePage({
+    slug: "replicate-alternative",
+    title: "Replicate Alternative for Production AI API Gateways | CrazyRouter",
+    description:
+      "Compare Replicate and CrazyRouter for teams choosing between hosted model execution and a production gateway for selected AI APIs.",
+    h1: "Replicate alternative for production API teams",
+    intro:
+      "Replicate is strong for running hosted community models and custom model deployments. CrazyRouter is a better alternative when you want selected commercial image, video, chat, and embedding models behind one production gateway with visible pricing and account records.",
+    primaryKeyword: "replicate alternative",
+    secondaryKeywords: ["replicate api alternative", "replicate pricing alternative", "replicate ai alternative"],
+    intent:
+      "Use this comparison when the question is not model hosting itself, but how to run known model APIs through a stable gateway with clearer pricing and operational records.",
+    codeModel: "gpt-image-2",
+    codeEndpointType: "image-generation",
+    prompt: "A realistic product render of a modern desk lamp on a walnut desk",
+    sections: [
+      {
+        heading: "When CrazyRouter is the better fit",
+        body:
+          "CrazyRouter is a better fit when your product does not need to deploy custom models and instead needs reliable access to supported public model routes. You get a consistent API domain, model-name cards, documented endpoints, and usage records in the main console.",
+        bullets: [
+          "Image model routes can use the OpenAI Images-compatible endpoint.",
+          "Video routes can use the unified video creation and query flow.",
+          "Cost planning uses current CrazyRouter pricing rows."
+        ]
+      },
+      {
+        heading: "Where Replicate remains strong",
+        body:
+          "Replicate remains the stronger choice when your team needs hosted open-source models, custom model deployment, or community model experimentation that is not exposed in CrazyRouter's current catalog."
+      },
+      {
+        heading: "Migration path",
+        body:
+          "Separate Replicate usage into custom/community models and mainstream API workloads. Keep custom deployments on Replicate, then test CrazyRouter for mainstream image and video calls where the matching price rows are available.",
+        bullets: availabilityBullets(["gpt-image-2", "nano-banana-2", "qwen-image-max", "veo-3.1-fast", "veo-3.1"])
+      },
+      {
+        heading: "Decision summary",
+        body:
+          "Use Replicate for model hosting and open-source experimentation. Use CrazyRouter for production API routing when selected models, endpoint clarity, and cost records are more important than running arbitrary models."
+      }
+    ]
+  }),
+  alternativePage({
+    slug: "aimlapi-alternative",
+    title: "AIML API Alternative for Production Model Routing | CrazyRouter",
+    description:
+      "Compare AIML API and CrazyRouter for OpenAI-compatible AI API access, pricing visibility, supported model names, and production workflow control.",
+    h1: "AIML API alternative for production model routing",
+    intro:
+      "AIML API is usually evaluated for broad model access through a unified API surface. CrazyRouter is the alternative for teams that want a smaller, documented set of production routes with visible pricing, copyable model names, and account-level usage records.",
+    primaryKeyword: "aiml api alternative",
+    secondaryKeywords: ["aimlapi alternative", "aiml api pricing", "openai compatible api alternative"],
+    intent:
+      "Use this comparison when your team values OpenAI-compatible access but also needs model-specific price rows, endpoint mappings, and a console workflow that is easy to audit.",
+    codeModel: "gpt-image-2",
+    codeEndpointType: "image-generation",
+    prompt: "A sharp studio image of a developer dashboard with charts and model usage cards",
+    sections: [
+      {
+        heading: "When CrazyRouter is the better fit",
+        body:
+          "CrazyRouter is better when the team wants each supported model to be tied to pricing, documentation, and a tested endpoint path before production release. This reduces ambiguity when engineering and finance both need to understand API usage.",
+        bullets: [
+          "Use https://cn.crazyrouter.com/v1 as the OpenAI-compatible Base URL.",
+          "Use https://cn.crazyrouter.com for API requests outside the main console.",
+          "Use https://crazyrouter.com for API keys, recharge, billing, and usage records."
+        ]
+      },
+      {
+        heading: "Where AIML API remains strong",
+        body:
+          "AIML API remains useful when the primary requirement is a very broad model catalog under one API brand. CrazyRouter should be evaluated for the models it exposes with clear price rows and endpoint behavior."
+      },
+      {
+        heading: "Migration path",
+        body:
+          "Start with the OpenAI-compatible client configuration. Swap the base URL, copy one CrazyRouter model name from the price card, and run a narrow request set before changing larger workloads.",
+        bullets: availabilityBullets(["gpt-image-2", "nano-banana-2", "qwen-image-max", "grok-4-image"])
+      },
+      {
+        heading: "Decision summary",
+        body:
+          "Use AIML API when breadth is the most important selection factor. Use CrazyRouter when selected model coverage, pricing visibility, and production account records are more important."
+      }
+    ]
+  }),
+  alternativePage({
+    slug: "eachlabs-alternative",
+    title: "Eachlabs Alternative for Direct AI API Integration | CrazyRouter",
+    description:
+      "Compare Eachlabs and CrazyRouter for teams choosing between workflow-style AI orchestration and direct production API integration.",
+    h1: "Eachlabs alternative for direct AI API integration",
+    intro:
+      "Eachlabs is often considered for AI workflow building and multi-step media pipelines. CrazyRouter is the better alternative when developers want direct API calls, clear model prices, and production usage records instead of a workflow-first product surface.",
+    primaryKeyword: "eachlabs alternative",
+    secondaryKeywords: ["eachlabs ai alternative", "ai workflow api alternative", "media api alternative"],
+    intent:
+      "Use this comparison when your team needs to decide whether an AI workflow tool or a direct API gateway is the right layer for production integration.",
+    codeModel: "veo-3.1-fast",
+    codeEndpointType: "unified-video",
+    prompt: "A short product video showing a smartwatch floating above a matte black surface",
+    sections: [
+      {
+        heading: "When CrazyRouter is the better fit",
+        body:
+          "CrazyRouter is better when your application code should own the workflow and call models directly. The API layer stays simple: choose a supported model, copy the endpoint, send Bearer authentication, and review usage records in the console.",
+        bullets: [
+          "Direct API requests use https://cn.crazyrouter.com.",
+          "Console operations use https://crazyrouter.com.",
+          "Pricing and model names come from the CrazyRouter pricing catalog."
+        ]
+      },
+      {
+        heading: "Where Eachlabs remains strong",
+        body:
+          "Eachlabs remains useful when the team wants a workflow builder, media pipeline orchestration, or non-developer surfaces around AI generation. CrazyRouter is intentionally closer to a backend API gateway."
+      },
+      {
+        heading: "Migration path",
+        body:
+          "Keep orchestration in your application or job system, then move individual model calls into CrazyRouter one by one. Start with image generation or short video tasks where the pricing row and endpoint are already documented.",
+        bullets: availabilityBullets(["gpt-image-2", "nano-banana-2", "qwen-image-max", "veo-3.1-fast"])
+      },
+      {
+        heading: "Decision summary",
+        body:
+          "Use Eachlabs for workflow-first teams and visual orchestration. Use CrazyRouter for developer-owned production workflows that need direct model calls, visible pricing, and account records."
+      }
+    ]
+  })
+];
 
 export const seoPages: SeoPage[] = [
   {
@@ -602,19 +967,19 @@ print(response.data[0].url)`
   {
     kind: "comparison",
     slug: "ai-api-platform-comparison",
-    title: "AI API Platform Comparison for Production Teams | CrazyRouter",
+    title: "AI API Platform Alternatives for Production Teams | CrazyRouter",
     description:
-      "Compare CrazyRouter with AI API marketplaces and model gateways such as Apimart.ai, OpenRouter, AIML API, Requesty, Eden AI, and Replicate.",
-    eyebrow: "Platform Comparison",
-    h1: "AI API platform comparison",
+      "Compare CrazyRouter with fal.ai, WaveSpeed AI, PiAPI, CometAPI, Replicate, AIML API, and Eachlabs for production API work.",
+    eyebrow: "Platform Alternatives",
+    h1: "AI API platform alternatives",
     intro:
-      "Teams evaluating AI API platforms usually compare discovery marketplaces, model routers, and production gateways. CrazyRouter is strongest when you need standard model names, predictable endpoints, visible pricing, and console records for billable model calls.",
-    primaryKeyword: "ai api platform comparison",
-    secondaryKeywords: ["apimart alternative", "openrouter alternative", "aiml api alternative", "ai api marketplace"],
+      "AI API platforms overlap, but they are not interchangeable. Use this hub to compare CrazyRouter with creative model marketplaces, broad API aggregators, hosted model platforms, and workflow-first products.",
+    primaryKeyword: "ai api alternatives",
+    secondaryKeywords: ["fal ai alternative", "replicate alternative", "aiml api alternative", "ai api platform alternatives"],
     cta: "Compare API platforms",
     updatedAt: "2026-06-06",
     intent:
-      "Use this comparison when you are choosing where production traffic should run after initial model discovery is complete.",
+      "Use this hub when you are choosing where production traffic should run after initial model discovery is complete.",
     docsRefs: [
       "crazyrouter-docs/llms-guide.mdx",
       "crazyrouter-docs/api-endpoint.mdx",
@@ -623,21 +988,22 @@ print(response.data[0].url)`
     pricingModels: pricingRefs(["gpt-image-2", "veo-3.1", "nano-banana-2", "grok-4-image"]),
     sections: [
       {
-        heading: "Quick decision",
+        heading: "Quick decision framework",
         body:
-          "Discovery-first platforms help you browse providers and model categories. CrazyRouter is better suited when your next step is shipping an integration with one API base, Bearer authentication, pricing rows, endpoint mappings, and usage records."
+          "Discovery-first platforms help you browse providers and model categories. Hosted model platforms help with custom or community models. Workflow-first products help non-developer teams build media pipelines. CrazyRouter is better suited when the next step is shipping an integration with one API base, Bearer authentication, pricing rows, endpoint mappings, and usage records."
       },
       {
-        heading: "How the main options differ",
+        heading: "One-page alternatives",
         body:
-          "These platforms overlap, but they optimize for different workflows. The right choice depends on whether you need broad discovery, OpenAI-compatible model routing, workflow-oriented provider aggregation, or a production gateway with account and billing records.",
+          "Each platform below deserves its own decision page because the reason to switch is different. Start with the closest current provider, then compare the model rows and endpoint paths against your real workload.",
         bullets: [
-          "Apimart.ai: useful when the first job is browsing and comparing API categories.",
-          "OpenRouter: strong for routing many LLMs through an OpenAI-compatible interface.",
-          "AIML API: useful when you want one API surface for many AI models and modalities.",
-          "Requesty: focused on AI gateway controls such as routing, observability, and key management.",
-          "Eden AI: strong for aggregating AI providers across workflow categories.",
-          "Replicate: strong for running hosted community and open-source models."
+          "fal.ai: compare marketplace-style generative media access with a production gateway.",
+          "WaveSpeed AI: compare broad creative model access with documented API pricing and records.",
+          "PiAPI: compare model-specific creative task APIs with supported CrazyRouter routes.",
+          "CometAPI: compare broad AI API access with a narrower documented production workflow.",
+          "Replicate: compare hosted model execution with a gateway for selected commercial APIs.",
+          "AIML API: compare broad OpenAI-compatible access with model-specific pricing visibility.",
+          "Eachlabs: compare workflow-first orchestration with direct developer-owned API calls."
         ]
       },
       {
@@ -657,21 +1023,11 @@ print(response.data[0].url)`
           "Pick one workload, copy the standard model name, confirm the endpoint, estimate monthly spend, then run a small request set with your CrazyRouter API key. For image work, start with gpt-image-2, qwen-image-max, or nano-banana-2. For video work, start with veo-3.1-fast."
       }
     ],
-    faqs: [
-      {
-        question: "Is this a traffic comparison between platforms?",
-        answer:
-          "No. Traffic claims require third-party analytics or Search Console data. This guide compares platform fit, API workflow, pricing visibility, and production routing."
-      },
-      {
-        question: "Why not keep one page only about Apimart.ai?",
-        answer:
-          "Apimart.ai is only one discovery-style option. A broader platform comparison is more useful for teams choosing between marketplaces, model routers, provider aggregators, and production gateways."
-      }
-    ],
+    faqs: [],
     testEvidence: authenticatedEvidence,
-    related: ["ai-api-cost-calculator", "gpt-image-2-api", "veo-3-1-api"]
+    related: ["fal-ai-alternative", "replicate-alternative", "aimlapi-alternative", "ai-api-cost-calculator"]
   },
+  ...competitorAlternativePages,
   {
     kind: "tool",
     slug: "ai-api-cost-calculator",

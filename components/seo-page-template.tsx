@@ -22,8 +22,6 @@ const templateCopy = {
     docsSource: "Docs source",
     updated: "Updated",
     searchIntent: "Use case",
-    primaryKeyword: "Main topic",
-    secondaryKeywords: "Related topics",
     pricingModels: "Standard model names and pricing",
     pricingSource: "Source: GET https://cn.crazyrouter.com/api/pricing, snapshot",
     billing: "Billing",
@@ -48,8 +46,6 @@ const templateCopy = {
     docsSource: "查看文档索引",
     updated: "更新于",
     searchIntent: "适用场景",
-    primaryKeyword: "页面主题",
-    secondaryKeywords: "相关主题",
     pricingModels: "标准模型名与价格",
     pricingSource: "来源：GET https://cn.crazyrouter.com/api/pricing，快照日期",
     billing: "计费方式",
@@ -66,7 +62,7 @@ const templateCopy = {
     status: "状态",
     result: "结果",
     implementationExamples: "接入示例",
-    faq: "常见问题",
+    faq: "补充说明",
     docsAlignment: "相关文档",
     relatedPages: "相关中文指南"
   }
@@ -162,16 +158,6 @@ export function SeoPageTemplate({ page, locale = "en", pages = seoPages }: SeoPa
           <section className="rounded-lg border border-line bg-white p-6">
             <h2 className="text-2xl font-semibold text-ink">{copy.searchIntent}</h2>
             <p className="mt-4 leading-8 text-muted">{page.intent}</p>
-            <dl className="mt-5 grid gap-4 md:grid-cols-2">
-              <div>
-                <dt className="text-sm font-medium text-muted">{copy.primaryKeyword}</dt>
-                <dd className="mt-1 text-lg font-semibold text-ink">{page.primaryKeyword}</dd>
-              </div>
-              <div>
-                <dt className="text-sm font-medium text-muted">{copy.secondaryKeywords}</dt>
-                <dd className="mt-1 text-sm leading-6 text-ink">{page.secondaryKeywords.join(", ")}</dd>
-              </div>
-            </dl>
           </section>
 
           {pricing.length ? (
@@ -302,17 +288,19 @@ export function SeoPageTemplate({ page, locale = "en", pages = seoPages }: SeoPa
             </section>
           ) : null}
 
-          <section className="rounded-lg border border-line bg-white p-6">
-            <h2 className="text-2xl font-semibold text-ink">{copy.faq}</h2>
-            <div className="mt-5 divide-y divide-line">
-              {page.faqs.map((faq) => (
-                <div key={faq.question} className="py-5 first:pt-0 last:pb-0">
-                  <h3 className="font-semibold text-ink">{faq.question}</h3>
-                  <p className="mt-2 leading-7 text-muted">{faq.answer}</p>
-                </div>
-              ))}
-            </div>
-          </section>
+          {page.faqs.length ? (
+            <section className="rounded-lg border border-line bg-white p-6">
+              <h2 className="text-2xl font-semibold text-ink">{copy.faq}</h2>
+              <div className="mt-5 divide-y divide-line">
+                {page.faqs.map((faq) => (
+                  <div key={faq.question} className="py-5 first:pt-0 last:pb-0">
+                    <h3 className="font-semibold text-ink">{faq.question}</h3>
+                    <p className="mt-2 leading-7 text-muted">{faq.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
         </article>
 
         <aside className="space-y-6">

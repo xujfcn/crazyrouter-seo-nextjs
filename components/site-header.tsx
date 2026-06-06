@@ -21,7 +21,7 @@ export function SiteHeader() {
             {isZh ? "计算器" : "Calculator"}
           </Link>
           <Link href={isZh ? "/zh/guide/ai-api-platform-comparison" : "/guide/ai-api-platform-comparison"} className="hover:text-ink">
-            {isZh ? "对比" : "Compare"}
+            {isZh ? "替代方案" : "Alternatives"}
           </Link>
           <Link href={isZh ? "/guide" : "/zh/guide"} className="hover:text-ink">
             {isZh ? "English" : "中文"}

@@ -32,6 +32,10 @@ export function breadcrumbJsonLd(page: SeoPage, locale: PageLocale = "en") {
 }
 
 export function faqJsonLd(page: SeoPage) {
+  if (!page.faqs.length) {
+    return undefined;
+  }
+
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",

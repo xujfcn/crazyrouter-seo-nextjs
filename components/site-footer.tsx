@@ -14,7 +14,7 @@ export function SiteFooter() {
           <div className="font-semibold text-ink">CrazyRouter</div>
           <p className="mt-2">
             {isZh
-              ? "CrazyRouter AI API 中文指南，覆盖模型接入、平台对比和成本估算。"
+              ? "CrazyRouter AI API 中文指南，覆盖模型接入、平台替代方案和成本估算。"
               : "CrazyRouter AI API guides for model access, platform comparisons, and cost planning."}
           </p>
         </div>
@@ -28,9 +28,15 @@ export function SiteFooter() {
           </Link>
         </div>
         <div>
-          <div className="font-semibold text-ink">{isZh ? "对比" : "Compare"}</div>
+          <div className="font-semibold text-ink">{isZh ? "替代方案" : "Alternatives"}</div>
           <Link href={isZh ? "/zh/guide/ai-api-platform-comparison" : "/guide/ai-api-platform-comparison"} className="mt-2 block hover:text-ink">
-            {isZh ? "AI API 平台对比" : "AI API Platform Comparison"}
+            {isZh ? "AI API 平台替代方案" : "AI API Platform Alternatives"}
+          </Link>
+          <Link href={isZh ? "/zh/guide/fal-ai-alternative" : "/guide/fal-ai-alternative"} className="mt-2 block hover:text-ink">
+            {isZh ? "fal.ai 替代方案" : "fal.ai Alternative"}
+          </Link>
+          <Link href={isZh ? "/zh/guide/replicate-alternative" : "/guide/replicate-alternative"} className="mt-2 block hover:text-ink">
+            {isZh ? "Replicate 替代方案" : "Replicate Alternative"}
           </Link>
         </div>
         <div>

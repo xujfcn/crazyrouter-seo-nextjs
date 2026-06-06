@@ -9,8 +9,14 @@ All generated SEO pages live under one namespace:
 - `/guide/nano-banana-2-api`
 - `/guide/grok-4-image-api`
 - `/guide/qwen-image-api`
-- `/guide/crazyrouter-vs-apimart`
-- `/guide/apimart-ai-alternative`
+- `/guide/ai-api-platform-comparison`
+- `/guide/fal-ai-alternative`
+- `/guide/wavespeed-ai-alternative`
+- `/guide/piapi-alternative`
+- `/guide/cometapi-alternative`
+- `/guide/replicate-alternative`
+- `/guide/aimlapi-alternative`
+- `/guide/eachlabs-alternative`
 - `/guide/ai-api-cost-calculator`
 
 Chinese versions live under `/zh/guide/*` with the same slugs, for example `/zh/guide/gpt-image-2-api`.
