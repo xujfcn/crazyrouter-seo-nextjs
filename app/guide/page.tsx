@@ -5,7 +5,7 @@ import { getPagePath, seoPages } from "@/content/seo-pages";
 export const metadata: Metadata = {
   title: "CrazyRouter API Guides",
   description:
-    "Docs-aligned CrazyRouter model API guides, comparison pages, and calculator pages under the /guide namespace.",
+    "CrazyRouter model API guides, comparison pages, and calculator pages with current pricing data and docs-backed examples.",
   alternates: {
     canonical: "/guide",
     languages: {
@@ -25,8 +25,8 @@ export default function GuideIndexPage() {
             CrazyRouter API guide pages
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-muted">
-            Model guides, competitor pages, and the API cost calculator share one /guide namespace and
-            use the live Pricing API snapshot as their model source.
+            Compare model options, copy standard model names, review endpoint examples, and estimate costs
+            before creating an API key on CrazyRouter.
           </p>
         </div>
       </section>

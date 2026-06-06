@@ -14,8 +14,8 @@ export function SiteFooter() {
           <div className="font-semibold text-ink">CrazyRouter</div>
           <p className="mt-2">
             {isZh
-              ? "与文档和价格页对齐的 AI API 中文指南，统一放在 /zh/guide 路径下。"
-              : "Docs-aligned AI API guide pages under one /guide namespace."}
+              ? "CrazyRouter AI API 中文指南，覆盖模型接入、平台对比和成本估算。"
+              : "CrazyRouter AI API guides for model access, platform comparisons, and cost planning."}
           </p>
         </div>
         <div>

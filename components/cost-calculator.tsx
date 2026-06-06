@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { CalculatorPreset, PageLocale } from "@/content/seo-pages";
+import { CopyableText } from "@/components/copyable-text";
 
 type CostCalculatorProps = {
   presets: CalculatorPreset[];
@@ -49,7 +50,8 @@ const labels = {
     units: "Units",
     cost: "Cost",
     primary: "Primary",
-    fallback: "Fallback"
+    fallback: "Fallback",
+    copyModel: "Copy model name"
   },
   zh: {
     title: "API 成本计算器",
@@ -71,7 +73,8 @@ const labels = {
     units: "用量",
     cost: "费用",
     primary: "主路由",
-    fallback: "兜底路由"
+    fallback: "兜底路由",
+    copyModel: "复制模型名"
   }
 };
 
@@ -242,13 +245,17 @@ export function CostCalculator({ presets, locale = "en" }: CostCalculatorProps) 
           <tbody className="divide-y divide-line">
             <tr>
               <td className="px-4 py-3">{copy.primary}</td>
-              <td className="px-4 py-3">{primary.model}</td>
+              <td className="px-4 py-3">
+                <CopyableText value={primary.model} label={`${copy.copyModel} ${primary.model}`} />
+              </td>
               <td className="px-4 py-3">{Math.round(result.primaryUnits).toLocaleString()}</td>
               <td className="px-4 py-3">{money.format(result.primaryCost)}</td>
             </tr>
             <tr>
               <td className="px-4 py-3">{copy.fallback}</td>
-              <td className="px-4 py-3">{fallback.model}</td>
+              <td className="px-4 py-3">
+                <CopyableText value={fallback.model} label={`${copy.copyModel} ${fallback.model}`} />
+              </td>
               <td className="px-4 py-3">{Math.round(result.fallbackUnits).toLocaleString()}</td>
               <td className="px-4 py-3">{money.format(result.fallbackCost)}</td>
             </tr>

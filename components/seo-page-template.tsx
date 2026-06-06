@@ -8,6 +8,7 @@ import {
   type SeoPage
 } from "@/content/seo-pages";
 import { CostCalculator } from "@/components/cost-calculator";
+import { CopyableText } from "@/components/copyable-text";
 import { getEndpointPath, pricingUpdatedAt } from "@/lib/pricing";
 
 type SeoPageTemplateProps = {
@@ -23,7 +24,7 @@ const templateCopy = {
     searchIntent: "Use case",
     primaryKeyword: "Main topic",
     secondaryKeywords: "Related topics",
-    pricingModels: "Pricing page models",
+    pricingModels: "Standard model names and pricing",
     pricingSource: "Source: GET https://cn.crazyrouter.com/api/pricing, snapshot",
     billing: "Billing",
     publicEndpoints: "Public endpoints",
@@ -33,7 +34,7 @@ const templateCopy = {
     defaultRule: "default",
     testEvidence: "cn.crazyrouter.com test evidence",
     testEvidenceNote:
-      "Public checks were run without a key, and the model-list check used the local CRAZYROUTER_API_KEY without exposing it in the page. Billable generation tests are separate.",
+      "Only checks that returned 200 are shown here. API requests use https://cn.crazyrouter.com; account, billing, and console actions use https://crazyrouter.com.",
     check: "Check",
     request: "Request",
     status: "Status",
@@ -41,10 +42,7 @@ const templateCopy = {
     implementationExamples: "Implementation examples",
     faq: "FAQ",
     docsAlignment: "Source docs",
-    relatedPages: "Related guide pages",
-    namespaceTitle: "Unified route namespace",
-    namespaceBody:
-      "This SEO project generates only /guide/* paths so it does not conflict with existing /tools/* entries on the CrazyRouter tools project."
+    relatedPages: "Related guide pages"
   },
   zh: {
     docsSource: "查看文档索引",
@@ -52,7 +50,7 @@ const templateCopy = {
     searchIntent: "适用场景",
     primaryKeyword: "页面主题",
     secondaryKeywords: "相关主题",
-    pricingModels: "价格页模型",
+    pricingModels: "标准模型名与价格",
     pricingSource: "来源：GET https://cn.crazyrouter.com/api/pricing，快照日期",
     billing: "计费方式",
     publicEndpoints: "公开端点类型",
@@ -62,7 +60,7 @@ const templateCopy = {
     defaultRule: "默认",
     testEvidence: "cn.crazyrouter.com 实测证据",
     testEvidenceNote:
-      "公开接口检查不使用密钥；模型列表检查使用本地 CRAZYROUTER_API_KEY，但页面不会暴露密钥。付费生成测试需要单独执行。",
+      "这里只展示返回 200 的检查结果。API 请求使用 https://cn.crazyrouter.com；账号、充值和控制台使用 https://crazyrouter.com。",
     check: "检查项",
     request: "请求",
     status: "状态",
@@ -70,10 +68,7 @@ const templateCopy = {
     implementationExamples: "接入示例",
     faq: "常见问题",
     docsAlignment: "相关文档",
-    relatedPages: "相关中文指南",
-    namespaceTitle: "统一路由命名空间",
-    namespaceBody:
-      "本 SEO 项目公开页面使用 /guide/* 和 /zh/guide/* 路径，不占用 CrazyRouter Tools 已有的 /tools/* 入口。"
+    relatedPages: "相关中文指南"
   }
 };
 
@@ -129,6 +124,7 @@ export function SeoPageTemplate({ page, locale = "en", pages = seoPages }: SeoPa
     .filter((item): item is SeoPage => Boolean(item));
   const pricing = getPagePricing(page);
   const endpoint = endpointText(page.endpointType);
+  const evidence = page.testEvidence?.filter((item) => item.status === "200") ?? [];
 
   return (
     <main>
@@ -196,7 +192,15 @@ export function SeoPageTemplate({ page, locale = "en", pages = seoPages }: SeoPa
               <div className="mt-5 grid gap-4 md:grid-cols-2">
                 {pricing.map((item) => (
                   <div key={item.modelName} className="rounded-lg border border-line bg-panel p-4">
-                    <div className="text-lg font-semibold text-ink">{item.modelName}</div>
+                    <CopyableText
+                      value={item.modelName}
+                      label={
+                        locale === "zh"
+                          ? `复制标准模型名 ${item.modelName}`
+                          : `Copy standard model name ${item.modelName}`
+                      }
+                      className="text-base font-semibold"
+                    />
                     <div className="mt-2 text-sm text-muted">{item.displayPrice}</div>
                     <div className="mt-3 grid gap-2 text-xs text-muted">
                       <div>
@@ -241,7 +245,7 @@ export function SeoPageTemplate({ page, locale = "en", pages = seoPages }: SeoPa
             </section>
           ))}
 
-          {page.testEvidence?.length ? (
+          {evidence.length ? (
             <section className="rounded-lg border border-line bg-white p-6">
               <h2 className="flex items-center gap-2 text-2xl font-semibold text-ink">
                 <ShieldCheck className="h-6 w-6 text-brand" aria-hidden="true" />
@@ -261,7 +265,7 @@ export function SeoPageTemplate({ page, locale = "en", pages = seoPages }: SeoPa
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-line">
-                    {page.testEvidence.map((item) => (
+                    {evidence.map((item) => (
                       <tr key={`${item.method}-${item.url}-${item.label}`}>
                         <td className="px-4 py-3 font-medium text-ink">{item.label}</td>
                         <td className="px-4 py-3 text-muted">
@@ -346,12 +350,6 @@ export function SeoPageTemplate({ page, locale = "en", pages = seoPages }: SeoPa
             </div>
           </div>
 
-          <div className="rounded-lg border border-line bg-ink p-5 text-white">
-            <h2 className="font-semibold">{copy.namespaceTitle}</h2>
-            <p className="mt-2 text-sm leading-6 text-slate-200">
-              {copy.namespaceBody}
-            </p>
-          </div>
         </aside>
       </section>
     </main>

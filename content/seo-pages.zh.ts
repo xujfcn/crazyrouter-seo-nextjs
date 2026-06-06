@@ -5,6 +5,7 @@ import {
   type SeoPage,
   type TestEvidence
 } from "@/content/seo-pages";
+import { getPricingSummary } from "@/lib/pricing";
 
 const bySlug = new Map(seoPages.map((page) => [page.slug, page]));
 
@@ -31,31 +32,15 @@ function translateEvidence(items: TestEvidence[] | undefined): TestEvidence[] | 
     return undefined;
   }
 
-  return items.map((item) => {
+  return items.filter((item) => item.status === "200").map((item) => {
     if (item.label === "Pricing API reachable") {
-      return evidence("价格 API 可访问", "已返回这些页面使用的公开模型价格目录。", item);
-    }
-
-    if (item.label === "Model list requires a token") {
-      return evidence("模型列表需要密钥", "已确认模型可用性检查需要 Authorization: Bearer YOUR_API_KEY。", item);
-    }
-
-    if (item.label === "Chat completions rejects GET") {
-      return evidence("Chat completions 拒绝 GET", "已确认手写 HTTP 请求必须使用文档要求的 POST 方法。", item);
-    }
-
-    if (item.label === "Image generation endpoint requires a token") {
-      return evidence("图片生成端点需要密钥", "端点存在，并且在接受生成参数前会校验 Bearer 认证。", item);
-    }
-
-    if (item.label === "Video creation endpoint requires a token") {
-      return evidence("视频创建端点需要密钥", "端点存在，并且在接受视频任务前会校验 Bearer 认证。", item);
+      return evidence("价格 API 返回 200", "已返回当前指南使用的模型价格、端点类型和计费方式。", item);
     }
 
     if (item.label === "Target models visible to API key") {
       return evidence(
-        "目标模型对本地 API key 可见",
-        "已确认 gpt-image-2、veo-3.1-fast、veo-3.1、nano-banana-2、nano-banana-pro、nano-banana、grok-4-image、qwen-image-plus、qwen-image-max、qwen-image-2.0 对本地 CrazyRouter API key 可见。",
+        "模型列表返回 200",
+        "已返回目标模型列表，包含本组指南使用的图片与视频模型。",
         item
       );
     }
@@ -83,6 +68,26 @@ const presetLabels = {
   "veo-3.1-fast": { label: "Veo 3.1 Fast", unitLabel: "秒" },
   "veo-3.1": { label: "Veo 3.1", unitLabel: "秒" }
 };
+
+function cnDisplayPrice(price: string | undefined) {
+  if (!price) {
+    return "见价格页";
+  }
+
+  return price
+    .replace("/image", "/张")
+    .replace("/second", "/秒")
+    .replace("See Pricing page", "见价格页")
+    .replace(/ after ([0-9.]+)x discount/, "（已按 $1 折扣）");
+}
+
+function cnAvailabilityBullets(models: string[]) {
+  return models.map((model) => {
+    const pricing = getPricingSummary(model);
+    const endpoints = pricing?.publicEndpointTypes.join(", ") || "见价格页";
+    return `${model}：${cnDisplayPrice(pricing?.displayPrice)}；公开端点类型：${endpoints}。`;
+  });
+}
 
 function page(slug: string, patch: Omit<Partial<SeoPage>, "slug"> & { sections: PageSection[] }): SeoPage {
   const source = base(slug);
@@ -142,7 +147,7 @@ export const zhSeoPages: SeoPage[] = [
       {
         question: "这些价格来自哪里？",
         answer:
-          "页面读取的是 GET https://cn.crazyrouter.com/api/pricing 的提交快照，该接口对应 CrazyRouter 价格页。发布前如果价格页变更，需要重新同步快照。"
+          "价格卡片来自 CrazyRouter 价格页对应的 GET https://cn.crazyrouter.com/api/pricing 快照，用来展示当前公开模型名、端点类型和计费方式。"
       },
       {
         question: "OpenAI SDK 应该配置哪个 Base URL？",
@@ -161,7 +166,7 @@ export const zhSeoPages: SeoPage[] = [
     eyebrow: "视频 API 指南",
     h1: "Veo 3.1 API 中文接入指南",
     intro:
-      "本页覆盖 CrazyRouter 当前公开的 Veo 3.1 视频模型：veo-3.1-fast 和 veo-3.1。它按价格页、文档和 cn.crazyrouter.com 实测结果组织。",
+      "通过 CrazyRouter 统一视频 API 调用当前公开的 Veo 3.1 视频模型：veo-3.1-fast 和 veo-3.1。创建与查询任务都使用 https://cn.crazyrouter.com。",
     primaryKeyword: "veo 3.1 api",
     secondaryKeywords: ["veo api", "google veo api", "veo 3.1 价格"],
     cta: "测试 Veo 3.1",
@@ -169,10 +174,10 @@ export const zhSeoPages: SeoPage[] = [
       "评估视频 API 的团队需要知道公开模型别名、创建任务路径、查询方式、按秒计费，以及 fast 和 quality 路线如何选择。",
     sections: [
       {
-        heading: "与价格页对齐",
+        heading: "可用模型和计费方式",
         body:
-          "当前价格 API 返回 veo-3.1-fast 和 veo-3.1，public_endpoint_types 为 unified-video，billing_mode 为 per_second。",
-        bullets: base("veo-3-1-api").sections[0].bullets
+          "当前价格目录返回 veo-3.1-fast 和 veo-3.1，公开端点类型为 unified-video，计费方式为按生成秒数计费。",
+        bullets: cnAvailabilityBullets(["veo-3.1-fast", "veo-3.1"])
       },
       {
         heading: "当前公开调用约定",
@@ -199,10 +204,10 @@ export const zhSeoPages: SeoPage[] = [
       {
         question: "不带 API key 可以测试吗？",
         answer:
-          "可以访问公开价格接口；实际模型列表和视频任务需要 Authorization: Bearer YOUR_API_KEY。"
+          "可以先查看公开价格接口；创建视频任务前需要在 https://crazyrouter.com 创建 API Key，并在请求里传入 Bearer 认证。"
       },
       {
-        question: "本页覆盖哪些视频模型？",
+        question: "当前指南包含哪些视频模型？",
         answer:
           "当前视频指南覆盖 veo-3.1-fast 和 veo-3.1，并按价格页的 unified-video 与 per_second 计费口径展示。"
       }
@@ -214,7 +219,7 @@ export const zhSeoPages: SeoPage[] = [
     eyebrow: "图片 API 指南",
     h1: "Nano Banana 2 API 中文接入指南",
     intro:
-      "Nano Banana 2 在价格 API 中以 nano-banana-2 暴露，并使用 image-generation 公开端点。本页聚焦当前推荐的 OpenAI Images 兼容路径。",
+      "Nano Banana 2 在 CrazyRouter 中使用标准模型名 nano-banana-2，并通过 OpenAI Images 兼容的 /v1/images/generations 接入。",
     primaryKeyword: "nano banana 2 api",
     secondaryKeywords: ["nano banana api", "gemini 图片 api", "nano-banana-2 价格"],
     cta: "测试 Nano Banana 2",
@@ -222,13 +227,13 @@ export const zhSeoPages: SeoPage[] = [
       "评估 Gemini 图片路线的团队需要明确公开模型别名、图片生成路径、参考图参数和按图计费假设。",
     sections: [
       {
-        heading: "与价格页对齐",
+        heading: "可用模型和计费方式",
         body:
-          "Nano Banana 系列在价格 API 中存在；本页主目标是 nano-banana-2，因为文档将它作为当前图片路径的推荐目标。",
-        bullets: base("nano-banana-2-api").sections[0].bullets
+          "Nano Banana 系列在价格目录中提供多个模型行。新接入建议优先使用 nano-banana-2，再按输出质量、成本和参考图需求比较其他同系列模型。",
+        bullets: cnAvailabilityBullets(["nano-banana-2", "nano-banana-pro", "nano-banana"])
       },
       {
-        heading: "文档字段约定",
+        heading: "请求字段",
         body:
           "使用 POST /v1/images/generations，model 为 nano-banana-2。公开参数包含 prompt、image_input、resolution、aspect_ratio、output_format、output_compression 和 n，不要直接传 Gemini 原生字段。",
         bullets: [
@@ -238,9 +243,9 @@ export const zhSeoPages: SeoPage[] = [
         ]
       },
       {
-        heading: "页面实际用途",
+        heading: "接入建议",
         body:
-          "页面包含价格行、接口证据、代码样例和成本计算器入口，适合在发布前逐项检查模型与文档是否一致。"
+          "先用 1 张图片和 1K 分辨率验证输出，再逐步增加参考图、分辨率和输出格式。需要管理账号、充值或查看消费记录时进入 https://crazyrouter.com。"
       }
     ],
     faqs: [
@@ -262,7 +267,7 @@ export const zhSeoPages: SeoPage[] = [
     eyebrow: "图片 API 指南",
     h1: "Grok 4 Image API 中文接入指南",
     intro:
-      "本页只围绕价格 API 中当前存在的 grok-4-image 编写，并按 image-generation 公开端点展示接入方式。",
+      "使用 CrazyRouter 接入标准模型名 grok-4-image，通过 OpenAI Images 兼容端点生成图片，并按 Grok 图片模型的参数边界发起请求。",
     primaryKeyword: "grok 4 image api",
     secondaryKeywords: ["grok 图片 api", "xai 图片 api", "grok-4-image 价格"],
     cta: "测试 Grok 图片生成",
@@ -270,10 +275,10 @@ export const zhSeoPages: SeoPage[] = [
       "开发者在比较图片 API 时，需要先知道 Grok 图片模型有哪些不同参数，避免直接复制通用 OpenAI Images 请求体导致失败。",
     sections: [
       {
-        heading: "与价格页对齐",
+        heading: "可用模型和计费方式",
         body:
-          "当前价格 API 中 grok-4-image 对客户公开 image-generation 端点。展示价格应以 CrazyRouter 价格页和消费日志为准。",
-        bullets: base("grok-4-image-api").sections[0].bullets
+          "当前价格目录中 grok-4-image 对客户公开 image-generation 端点。实际费用以 CrazyRouter 价格页、控制台和消费日志为准。",
+        bullets: cnAvailabilityBullets(["grok-4-image"])
       },
       {
         heading: "Grok 专属参数",
@@ -300,7 +305,7 @@ export const zhSeoPages: SeoPage[] = [
       {
         question: "价格从哪里读取？",
         answer:
-          "本页价格卡片来自 CrazyRouter 价格 API 快照，并在页面中展示 public_endpoint_types 和 supported_endpoint_types。"
+          "价格卡片来自 GET https://cn.crazyrouter.com/api/pricing，并展示公开端点类型、支持端点类型和当前计费口径。"
       }
     ]
   }),
@@ -315,13 +320,13 @@ export const zhSeoPages: SeoPage[] = [
     secondaryKeywords: ["qwen-image-plus api", "qwen-image-max api", "qwen-image-2.0 api"],
     cta: "测试 Qwen Image API",
     intent:
-      "搜索 Qwen Image API 的开发者需要区分客户侧公开别名和供应商侧执行细节，并拿到可复制的图片生成路径。",
+      "搜索 Qwen Image API 的开发者需要确认客户侧标准模型名、图片生成端点、Base URL 和最小可运行请求。",
     sections: [
       {
-        heading: "与价格页对齐",
+        heading: "可用模型和计费方式",
         body:
-          "本页只使用价格页当前公开的 Qwen Image 模型：qwen-image-plus、qwen-image-max 和 qwen-image-2.0。",
-        bullets: base("qwen-image-api").sections[0].bullets
+          "当前 Qwen Image 接入使用价格目录公开的模型：qwen-image-plus、qwen-image-max 和 qwen-image-2.0。",
+        bullets: cnAvailabilityBullets(["qwen-image-plus", "qwen-image-max", "qwen-image-2.0"])
       },
       {
         heading: "客户侧协议",
@@ -341,9 +346,9 @@ export const zhSeoPages: SeoPage[] = [
     ],
     faqs: [
       {
-        question: "本页覆盖 Qwen 图片编辑吗？",
+        question: "当前包含 Qwen 图片编辑吗？",
         answer:
-          "不覆盖。当前 Qwen 文档页说明首批公开路径聚焦文生图，编辑能力应等公开路由明确后再单独评估。"
+          "当前 Qwen Image 文档聚焦文生图。图片编辑能力应等对应公开能力和参数说明明确后再接入。"
       },
       {
         question: "Base URL 是什么？",
@@ -358,7 +363,7 @@ export const zhSeoPages: SeoPage[] = [
     eyebrow: "竞品对比",
     h1: "CrazyRouter vs Apimart.ai 中文对比",
     intro:
-      "本页面向已经从 API 发现阶段进入生产接入阶段的团队。它不做无法验证的流量断言，而是围绕产品决策展开：API 市场式发现，还是文档对齐的生产 API 路由。",
+      "如果你正在比较 Apimart.ai 和 CrazyRouter，核心差异是使用场景：先发现 API 资源，还是把模型调用收敛到可计费、可观测、文档清晰的生产网关。",
     primaryKeyword: "crazyrouter vs apimart",
     secondaryKeywords: ["apimart 替代", "apimart.ai 替代", "ai api 市场"],
     cta: "比较生产路由",
@@ -371,32 +376,32 @@ export const zhSeoPages: SeoPage[] = [
           "如果目标是浏览有哪些 API，Apimart.ai 式发现有价值；如果目标是生产接入，CrazyRouter 的重点是一套 Base URL、Bearer 认证、价格行、端点类型、日志和模型文档。"
       },
       {
-        heading: "CrazyRouter 页面能证明什么",
+        heading: "CrazyRouter 能提供什么",
         body:
-          "更强的对比点不是泛化功能清单，而是可复查的运营证据：公开价格 API、端点映射、模型指南和同一路径下的可复制 cURL 示例。",
+          "CrazyRouter 的重点是把模型接入所需的信息放到同一套工作流中：公开价格 API、端点映射、模型指南、可复制 cURL 示例和控制台消费记录。",
         bullets: [
           "价格来源：GET https://cn.crazyrouter.com/api/pricing。",
           "OpenAI 兼容 Base URL：https://cn.crazyrouter.com/v1。",
           "模型页链接到具体 docs 文件和 endpoint type。",
-          "成本计算器使用真实模型行，不使用占位价格。"
+          "账号创建、充值和消费记录在 https://crazyrouter.com 完成。"
         ]
       },
       {
-        heading: "页面应该如何转化",
+        heading: "下一步怎么评估",
         body:
-          "竞品页应把用户引导到具体下一步：选一个模型指南，核对端点，估算月成本，然后到 CrazyRouter 主站创建 API Key。"
+          "先选一个真实模型指南，复制标准模型名，核对端点和价格，再用成本计算器估算月费用。准备发起请求时，到 https://crazyrouter.com 创建 API Key。"
       }
     ],
     faqs: [
       {
-        question: "本页是否声称 CrazyRouter 流量高于 Apimart.ai？",
+        question: "是否声称 CrazyRouter 流量高于 Apimart.ai？",
         answer:
-          "不声称。流量判断需要第三方分析或 Search Console 数据，本项目内没有这类数据。本页只使用可验证的产品事实做定位。"
+          "不声称。流量判断需要第三方分析或 Search Console 数据。这里重点比较产品接入方式、价格可见性和生产 API 工作流。"
       },
       {
-        question: "这个竞品页应该由哪些内部链接支撑？",
+        question: "我应该先看哪个模型？",
         answer:
-          "应从模型指南、成本计算器、Apimart 替代页和 AI API 市场主题页链接过来，并统一放在 /guide 或 /zh/guide 路径下。"
+          "图片生成可以先看 gpt-image-2、qwen-image-max 或 nano-banana-2；视频生成可以先看 veo-3.1-fast。选定模型后再进入成本计算器估算预算。"
       }
     ]
   }),
@@ -419,7 +424,7 @@ export const zhSeoPages: SeoPage[] = [
           "发现阶段很有用，但生产团队需要稳定 Base URL、一致认证、端点级示例、可自动化读取的价格数据，以及不重写所有集成也能比较模型的路径。"
       },
       {
-        heading: "迁移路径",
+        heading: "迁移步骤",
         body:
           "不要一次迁移所有工作负载。先选一个模型族，确认它在价格页存在，用密钥跑 GET /v1/models，再发一次 POST 请求，并记录成本、时延和失败类型。",
         bullets: [
@@ -429,9 +434,9 @@ export const zhSeoPages: SeoPage[] = [
         ]
       },
       {
-        heading: "路径架构",
+        heading: "接入入口",
         body:
-          "本 SEO 项目使用 /guide/* 和 /zh/guide/* 承载竞品页、模型页和计算器页，避免占用已有 /tools/pricing-calculator、/tools/model-comparison 等工具路径。"
+          "API 请求默认使用 https://cn.crazyrouter.com，例如 OpenAI 兼容客户端填写 https://cn.crazyrouter.com/v1。账号登录、充值、控制台和消费记录继续使用 https://crazyrouter.com。"
       }
     ],
     faqs: [
@@ -453,12 +458,12 @@ export const zhSeoPages: SeoPage[] = [
     eyebrow: "交互工具",
     h1: "AI API 成本计算器",
     intro:
-      "这是一个真实可用的计算器页面，不是占位内容。预设价格来自同一份价格 API 快照，可估算请求用量、重试率、兜底占比和有效产出成本。",
+      "用 CrazyRouter 当前价格目录估算图片与视频 API 成本。你可以调整请求用量、重试率、兜底占比和有效产出率，快速看到月度预算变化。",
     primaryKeyword: "ai api 成本计算器",
     secondaryKeywords: ["openai api 价格计算器", "视频 api 成本计算器", "图片 api 价格计算器"],
     cta: "估算模型成本",
     intent:
-      "搜索 API 成本计算器的用户通常正在规划真实集成。页面需要立即给出数字，并把用户引导到具体模型接入指南。",
+      "适合正在规划图片、视频或多模型兜底方案的团队，用来在实际付费生成前估算预算和单个有效产出的成本。",
     sections: [
       {
         heading: "计算器衡量什么",
@@ -468,7 +473,7 @@ export const zhSeoPages: SeoPage[] = [
       {
         heading: "价格来源",
         body:
-          "每个预设都来自提交的价格 API 快照。对包含详细规则的图片和视频模型，预设会优先选择 verified 或第一条可用的 platform_base_price；简单按请求计费的模型则使用 model_price 和 discount。"
+          "每个预设都来自 GET https://cn.crazyrouter.com/api/pricing 的价格目录。图片和视频模型优先使用已验证或当前可用的公开计费规则；最终账单仍以 https://crazyrouter.com 控制台和消费日志为准。"
       }
     ],
     faqs: [

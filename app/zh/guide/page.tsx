@@ -5,7 +5,7 @@ import { zhSeoPages } from "@/content/seo-pages.zh";
 
 export const metadata: Metadata = {
   title: "CrazyRouter API 中文指南",
-  description: "CrazyRouter 模型 API、竞品对比和成本计算器的中文 SEO 指南页，统一放在 /zh/guide 路径下。",
+  description: "CrazyRouter 模型 API、竞品对比和成本计算器中文指南，包含当前价格数据和文档示例。",
   alternates: {
     canonical: "/zh/guide",
     languages: {
@@ -25,8 +25,7 @@ export default function ZhGuideIndexPage() {
             CrazyRouter API 中文指南
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-muted">
-            模型接入、竞品对比和 API 成本计算器统一放在 /zh/guide 命名空间下，并与价格 API
-            和 CrazyRouter 文档保持一致。
+            查看模型接入方式、复制标准模型名、核对 API 端点，并在创建 API Key 前估算图片和视频模型成本。
           </p>
         </div>
       </section>

@@ -74,37 +74,6 @@ const publicEvidence: TestEvidence[] = [
     url: pricingApi,
     status: "200",
     result: "Returned the public model pricing catalog used by these pages."
-  },
-  {
-    label: "Model list requires a token",
-    method: "GET",
-    url: `${apiBase}/v1/models`,
-    status: "401",
-    result: "Confirmed protected model availability checks require Authorization: Bearer YOUR_API_KEY."
-  },
-  {
-    label: "Chat completions rejects GET",
-    method: "GET",
-    url: `${apiBase}/v1/chat/completions`,
-    status: "404",
-    result: "Confirmed hand-written HTTP calls must use the documented POST method."
-  }
-];
-
-const protectedPostEvidence: TestEvidence[] = [
-  {
-    label: "Image generation endpoint requires a token",
-    method: "POST",
-    url: `${openAiBase}/images/generations`,
-    status: "401",
-    result: "Endpoint exists and enforces Bearer auth before accepting generation payloads."
-  },
-  {
-    label: "Video creation endpoint requires a token",
-    method: "POST",
-    url: `${openAiBase}/video/create`,
-    status: "401",
-    result: "Endpoint exists and enforces Bearer auth before accepting video jobs."
   }
 ];
 
@@ -128,7 +97,7 @@ const commonFaqs = {
   auth: {
     question: "Can I test this without an API key?",
     answer:
-      "You can test the public pricing endpoint without a key. Actual model calls and GET /v1/models require Authorization: Bearer YOUR_API_KEY, so production validation must use a CrazyRouter API key."
+      "Start by checking the public pricing endpoint. To list models or make model calls, create an API key at https://crazyrouter.com and send it as Bearer authorization."
   },
   baseUrl: {
     question: "Which Base URL should an OpenAI-compatible client use?",
@@ -284,11 +253,11 @@ export const seoPages: SeoPage[] = [
     slug: "gpt-image-2-api",
     title: "GPT Image 2 API Guide | CrazyRouter",
     description:
-      "Build with gpt-image-2 on CrazyRouter using OpenAI Images-compatible endpoints, Pricing page model data, and docs-aligned parameters.",
+      "Build with gpt-image-2 on CrazyRouter using OpenAI Images-compatible endpoints, current pricing data, and documented parameters.",
     eyebrow: "Image API Guide",
     h1: "GPT Image 2 API guide",
     intro:
-      "GPT Image pages now target gpt-image-2 because that is the model returned by the CrazyRouter Pricing API. This page does not use the removed gpt-image-1 SEO target.",
+      "Use CrazyRouter to call gpt-image-2 for image generation and editing. OpenAI-compatible clients should use https://cn.crazyrouter.com/v1, and account or billing actions stay on https://crazyrouter.com.",
     primaryKeyword: "gpt-image-2 api",
     secondaryKeywords: ["gpt image api", "openai image generation api", "gpt-image-2 pricing"],
     cta: "Create an API key",
@@ -304,9 +273,9 @@ export const seoPages: SeoPage[] = [
     endpointType: "image-generation",
     sections: [
       {
-        heading: "Pricing page alignment",
+        heading: "Available model and pricing",
         body:
-          "The live Pricing API contains gpt-image-2 with image-generation as its public endpoint type. This is the model name used in code, metadata, internal links, and sitemap URLs.",
+          "The current pricing catalog contains gpt-image-2 with image-generation as its public endpoint type. Use this exact model name in code and cost planning.",
         bullets: availabilityBullets(["gpt-image-2"])
       },
       {
@@ -320,9 +289,9 @@ export const seoPages: SeoPage[] = [
         ]
       },
       {
-        heading: "Useful feature surface",
+        heading: "Implementation checklist",
         body:
-          "This page is functional for implementation planning: it exposes the current pricing row, endpoint mapping, cURL/Python examples, and a related cost calculator that uses the same pricing snapshot."
+          "Start with one image, confirm the response URL, then add size, quality, and output_format controls as needed. Use the calculator to estimate spend before moving regular traffic."
       }
     ],
     faqs: [
@@ -339,7 +308,7 @@ export const seoPages: SeoPage[] = [
       "image-generation",
       "A clean product photo of a ceramic coffee mug on a white background"
     ),
-    testEvidence: [...authenticatedEvidence, protectedPostEvidence[0]],
+    testEvidence: authenticatedEvidence,
     related: ["nano-banana-2-api", "grok-4-image-api", "ai-api-cost-calculator"]
   },
   {
@@ -347,7 +316,7 @@ export const seoPages: SeoPage[] = [
     slug: "veo-3-1-api",
     title: "Veo 3.1 API Guide with Fast and Quality Models | CrazyRouter",
     description:
-      "Use veo-3.1-fast and veo-3.1 through CrazyRouter's unified video API with pricing snapshot data and docs-aligned request examples.",
+      "Use veo-3.1-fast and veo-3.1 through CrazyRouter's unified video API with current pricing data and documented request examples.",
     eyebrow: "Video API Guide",
     h1: "Veo 3.1 API guide",
     intro:
@@ -368,7 +337,7 @@ export const seoPages: SeoPage[] = [
     endpointType: "unified-video",
     sections: [
       {
-        heading: "Pricing page alignment",
+        heading: "Available models and pricing",
         body:
           "The current Pricing API returns veo-3.1-fast and veo-3.1 with public_endpoint_types set to unified-video and billing mode per_second.",
         bullets: availabilityBullets(veoModels)
@@ -403,7 +372,7 @@ export const seoPages: SeoPage[] = [
       "unified-video",
       "A cinematic shot of a spaceship landing on Mars, dust clouds rising"
     ),
-    testEvidence: [...authenticatedEvidence, protectedPostEvidence[1]],
+    testEvidence: authenticatedEvidence,
     related: ["gpt-image-2-api", "ai-api-cost-calculator", "crazyrouter-vs-apimart"]
   },
   {
@@ -411,7 +380,7 @@ export const seoPages: SeoPage[] = [
     slug: "nano-banana-2-api",
     title: "Nano Banana 2 API Guide | CrazyRouter",
     description:
-      "Use nano-banana-2 through CrazyRouter's OpenAI Images-compatible API with live Pricing page data and docs-aligned image parameters.",
+      "Use nano-banana-2 through CrazyRouter's OpenAI Images-compatible API with current pricing data and documented image parameters.",
     eyebrow: "Image API Guide",
     h1: "Nano Banana 2 API guide",
     intro:
@@ -431,13 +400,13 @@ export const seoPages: SeoPage[] = [
     endpointType: "image-generation",
     sections: [
       {
-        heading: "Pricing page alignment",
+        heading: "Available models and pricing",
         body:
-          "The Nano Banana family is present in the Pricing API, but this page's primary SEO target is nano-banana-2 because the docs identify it as the recommended current image path.",
+          "The Nano Banana family is present in the pricing catalog. Start with nano-banana-2 for new integrations, then compare related models by output quality, cost, and reference-image needs.",
         bullets: availabilityBullets(["nano-banana-2", "nano-banana-pro", "nano-banana"])
       },
       {
-        heading: "Docs-aligned request fields",
+        heading: "Request fields",
         body:
           "Use POST /v1/images/generations with model nano-banana-2. The public parameters are prompt, image_input, resolution, aspect_ratio, output_format, output_compression, and n. Do not pass Gemini-native fields such as generationConfig or imageOutputOptions.",
         bullets: [
@@ -447,9 +416,9 @@ export const seoPages: SeoPage[] = [
         ]
       },
       {
-        heading: "Functional use on this SEO page",
+        heading: "Implementation checklist",
         body:
-          "The page includes pricing-row cards, endpoint evidence, code samples, and an internal link to the calculator with Nano Banana 2 as a preset."
+          "Begin with one 1K image and one reference-free prompt. Add image_input, aspect_ratio, resolution, and output format controls only after the baseline request is stable."
       }
     ],
     faqs: [
@@ -466,7 +435,7 @@ export const seoPages: SeoPage[] = [
       "image-generation",
       "A clean ecommerce hero shot of a red apple on a white background"
     ),
-    testEvidence: [...authenticatedEvidence, protectedPostEvidence[0]],
+    testEvidence: authenticatedEvidence,
     related: ["gpt-image-2-api", "qwen-image-api", "ai-api-cost-calculator"]
   },
   {
@@ -478,7 +447,7 @@ export const seoPages: SeoPage[] = [
     eyebrow: "Image API Guide",
     h1: "Grok 4 Image API guide",
     intro:
-      "This page targets grok-4-image because it appears in the live CrazyRouter Pricing API and uses image-generation as the public endpoint type.",
+      "Use the standard model name grok-4-image through CrazyRouter's OpenAI Images-compatible endpoint, with Grok-specific request parameters.",
     primaryKeyword: "grok 4 image api",
     secondaryKeywords: ["grok image api", "xai image api", "grok-4-image pricing"],
     cta: "Test Grok image generation",
@@ -494,7 +463,7 @@ export const seoPages: SeoPage[] = [
     endpointType: "image-generation",
     sections: [
       {
-        heading: "Pricing page alignment",
+        heading: "Available model and pricing",
         body:
           "The current Pricing API row for grok-4-image exposes image-generation to customers. Pricing display should follow the Pricing page and consumption logs, not upstream marketing copy.",
         bullets: availabilityBullets(["grok-4-image"])
@@ -564,7 +533,7 @@ response = client.images.generate(
 print(response.data[0].url)`
       }
     ],
-    testEvidence: [...authenticatedEvidence, protectedPostEvidence[0]],
+    testEvidence: authenticatedEvidence,
     related: ["gpt-image-2-api", "qwen-image-api", "ai-api-cost-calculator"]
   },
   {
@@ -576,7 +545,7 @@ print(response.data[0].url)`
     eyebrow: "Image API Guide",
     h1: "Qwen Image API guide",
     intro:
-      "Qwen Image is a model-family page built around the three Qwen image rows currently returned by CrazyRouter's Pricing API.",
+      "Qwen Image covers the standard customer-facing model names qwen-image-plus, qwen-image-max, and qwen-image-2.0 through CrazyRouter's OpenAI Images-compatible endpoint.",
     primaryKeyword: "qwen image api",
     secondaryKeywords: ["qwen-image-plus api", "qwen-image-max api", "qwen-image-2.0 api"],
     cta: "Test Qwen Image API",
@@ -592,9 +561,9 @@ print(response.data[0].url)`
     endpointType: "image-generation",
     sections: [
       {
-        heading: "Pricing page alignment",
+        heading: "Available models and pricing",
         body:
-          "The page uses only Qwen Image models currently exposed in Pricing: qwen-image-plus, qwen-image-max, and qwen-image-2.0.",
+          "Current Qwen Image access uses the public pricing rows for qwen-image-plus, qwen-image-max, and qwen-image-2.0.",
         bullets: availabilityBullets(qwenModels)
       },
       {
@@ -617,7 +586,7 @@ print(response.data[0].url)`
       commonFaqs.pricingTruth,
       commonFaqs.baseUrl,
       {
-        question: "Does this page cover Qwen image editing?",
+        question: "Does this guide include Qwen image editing?",
         answer:
           "No. The Qwen docs page says this first public batch covers text-to-image. Editing capability should be evaluated separately when the public route is documented."
       }
@@ -627,7 +596,7 @@ print(response.data[0].url)`
       "image-generation",
       "A premium product poster for a glass perfume bottle with soft studio lighting"
     ),
-    testEvidence: [...authenticatedEvidence, protectedPostEvidence[0]],
+    testEvidence: authenticatedEvidence,
     related: ["gpt-image-2-api", "nano-banana-2-api", "ai-api-cost-calculator"]
   },
   {
@@ -639,7 +608,7 @@ print(response.data[0].url)`
     eyebrow: "Competitor Comparison",
     h1: "CrazyRouter vs Apimart.ai",
     intro:
-      "This comparison is written for teams that started with AI API discovery and now need a production integration path. It avoids unverifiable traffic claims and focuses on the product decision: marketplace-style discovery versus docs-aligned API routing.",
+      "If you are comparing Apimart.ai and CrazyRouter, the key question is the job to be done: API discovery, or a documented production gateway for billable model calls.",
     primaryKeyword: "crazyrouter vs apimart",
     secondaryKeywords: ["apimart alternative", "apimart.ai alternative", "ai api marketplace"],
     cta: "Compare production routing",
@@ -659,32 +628,32 @@ print(response.data[0].url)`
           "Use Apimart.ai-style discovery when the job is browsing available APIs. Use CrazyRouter when the job is production integration: one base URL, bearer auth, pricing rows, endpoint types, logs, and model-specific documentation."
       },
       {
-        heading: "What CrazyRouter can prove on-page",
+        heading: "What CrazyRouter provides",
         body:
-          "The strongest comparison angle is not a vague feature checklist. It is direct operational evidence: public pricing API, endpoint mappings, docs-backed model guides, and testable cURL examples under the same /guide path.",
+          "CrazyRouter brings the core integration pieces into one workflow: public pricing data, endpoint mappings, model guides, copyable cURL examples, and console consumption records.",
         bullets: [
           "Pricing truth source: GET https://cn.crazyrouter.com/api/pricing.",
           "OpenAI-compatible base URL: https://cn.crazyrouter.com/v1.",
           "Model pages link to exact docs files and endpoint types.",
-          "The calculator uses actual model rows, not placeholder unit prices."
+          "Account creation, recharge, and usage logs are handled at https://crazyrouter.com."
         ]
       },
       {
-        heading: "Where this page should convert",
+        heading: "How to evaluate",
         body:
-          "A comparison page should send users into a concrete next step: choose one model guide, verify the endpoint, estimate monthly cost, then create an API key on the main CrazyRouter site."
+          "Choose one real model guide, copy the standard model name, verify the endpoint, estimate monthly spend, then create an API key on CrazyRouter when you are ready to test."
       }
     ],
     faqs: [
       {
         question: "Is this page claiming CrazyRouter has more traffic than Apimart.ai?",
         answer:
-          "No. Traffic claims require third-party analytics or search-console data that is not available inside this project. This page positions CrazyRouter as a production API-routing alternative using verifiable product facts."
+          "No. Traffic claims require third-party analytics or Search Console data. This comparison focuses on product workflow, pricing visibility, and production API routing."
       },
       {
-        question: "What internal links should support this competitor page?",
+        question: "Which model should I evaluate first?",
         answer:
-          "Link from model guides, the cost calculator, the Apimart alternative page, and any AI API marketplace content hub. Keep all SEO routes under /guide to avoid conflicts."
+          "For image generation, start with gpt-image-2, qwen-image-max, or nano-banana-2. For video generation, start with veo-3.1-fast, then estimate budget in the calculator."
       }
     ],
     testEvidence: authenticatedEvidence,
@@ -729,9 +698,9 @@ print(response.data[0].url)`
         ]
       },
       {
-        heading: "Path architecture",
+        heading: "Integration entry points",
         body:
-          "This SEO project deliberately uses /guide/* for competitor, model, and calculator pages. That keeps it separate from existing tool routes such as /tools/pricing-calculator and /tools/model-comparison."
+          "API requests should use https://cn.crazyrouter.com, such as https://cn.crazyrouter.com/v1 for OpenAI-compatible clients. Account login, recharge, console, and usage records remain on https://crazyrouter.com."
       }
     ],
     faqs: [
@@ -755,13 +724,13 @@ print(response.data[0].url)`
     eyebrow: "Interactive Tool",
     h1: "AI API cost calculator",
     intro:
-      "This is a real calculator page, not a placeholder. Presets are generated from the same Pricing API snapshot used by the model guides, and the controls estimate request units, retries, fallback share, and accepted-output cost.",
+      "Estimate image and video API cost from CrazyRouter's current pricing catalog. Adjust usage, retry rate, fallback share, and accepted-output rate to see how monthly spend changes.",
     primaryKeyword: "ai api cost calculator",
     secondaryKeywords: ["openai api price calculator", "video api cost calculator", "image api pricing calculator"],
     cta: "Estimate model cost",
     updatedAt: "2026-06-06",
     intent:
-      "Users searching for an API cost calculator are usually budgeting a real integration. The page should give them an immediate number and link to model-specific implementation guides.",
+      "Use this before paid generation tests to estimate budget and cost per accepted output for real image, video, or fallback-model workflows.",
     docsRefs: [
       "crazyrouter-docs/reference/official-pricing-methods.mdx",
       "crazyrouter-docs/llms-guide.mdx",
@@ -777,7 +746,7 @@ print(response.data[0].url)`
       {
         heading: "Pricing source",
         body:
-          "Every preset comes from the committed Pricing API snapshot. For image and video models that expose detailed rule rows, the preset uses a verified or first available platform_base_price row. For simple per-request rows, it uses model_price and discount where applicable."
+          "Every preset comes from GET https://cn.crazyrouter.com/api/pricing. For final billing, check the CrazyRouter console and consumption logs at https://crazyrouter.com."
       }
     ],
     faqs: [

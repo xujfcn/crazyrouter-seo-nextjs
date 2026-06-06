@@ -10,13 +10,13 @@ export default function HomePage() {
     <main>
       <section className="border-b border-line bg-panel">
         <div className="mx-auto max-w-6xl px-5 py-14 md:py-20">
-          <div className="text-sm font-semibold uppercase tracking-wide text-brand">Guide namespace</div>
+          <div className="text-sm font-semibold uppercase tracking-wide text-brand">API guides</div>
           <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight text-ink md:text-6xl">
             CrazyRouter AI API guides
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-muted">
-            Model, competitor, and calculator pages generated under /guide/* so they stay separate from
-            existing tool routes while staying aligned with the live Pricing API and CrazyRouter docs.
+            Model guides, competitor comparisons, and a cost calculator for planning real CrazyRouter API
+            integrations with current pricing data and docs-backed examples.
           </p>
         </div>
       </section>
