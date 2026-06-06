@@ -1,6 +1,6 @@
-# CrazyRouter SEO Next.js
+# Crazyrouter SEO Next.js
 
-Docs-aligned SEO guide pages for CrazyRouter model APIs, competitor comparisons, and calculator-led pages.
+Docs-aligned SEO guide pages for Crazyrouter model APIs, competitor comparisons, and calculator-led pages.
 
 All generated SEO pages live under one namespace:
 
@@ -21,7 +21,7 @@ All generated SEO pages live under one namespace:
 
 Chinese versions live under `/zh/guide/*` with the same slugs, for example `/zh/guide/gpt-image-2-api`.
 
-This avoids conflicts with existing CrazyRouter Tools routes such as `/tools/pricing-calculator/`, `/tools/model-comparison/`, and `/tools/model-radar/`.
+This avoids conflicts with existing Crazyrouter Tools routes such as `/tools/pricing-calculator/`, `/tools/model-comparison/`, and `/tools/model-radar/`.
 
 ## Data Sources
 

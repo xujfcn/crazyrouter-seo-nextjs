@@ -7,7 +7,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "CrazyRouter API Guides",
+    default: "Crazyrouter API Guides",
     template: "%s"
   },
   description: siteConfig.description,

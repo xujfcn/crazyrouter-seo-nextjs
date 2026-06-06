@@ -114,13 +114,13 @@ function page(slug: string, patch: Omit<Partial<SeoPage>, "slug"> & { sections: 
 
 export const zhSeoPages: SeoPage[] = [
   page("gpt-image-2-api", {
-    title: "GPT Image 2 API 中文接入指南 | CrazyRouter",
+    title: "GPT Image 2 API 中文接入指南 | Crazyrouter",
     description:
-      "使用 CrazyRouter 接入 gpt-image-2：包含 OpenAI Images 兼容端点、价格页模型数据、参数限制和可复查的接口证据。",
+      "使用 Crazyrouter 接入 gpt-image-2：包含 OpenAI Images 兼容端点、价格页模型数据、参数限制和可复查的接口证据。",
     eyebrow: "图片 API 指南",
     h1: "GPT Image 2 API 中文接入指南",
     intro:
-      "使用 CrazyRouter 调用 gpt-image-2 生成和编辑图片。OpenAI 兼容客户端把 base_url 配置为 https://cn.crazyrouter.com/v1，图片生成请求发送到 /v1/images/generations。",
+      "使用 Crazyrouter 调用 gpt-image-2 生成和编辑图片。OpenAI 兼容客户端把 base_url 配置为 https://cn.crazyrouter.com/v1，图片生成请求发送到 /v1/images/generations。",
     primaryKeyword: "gpt-image-2 api",
     secondaryKeywords: ["gpt image api", "openai 图片生成 api", "gpt-image-2 价格"],
     cta: "创建 API Key",
@@ -157,7 +157,7 @@ export const zhSeoPages: SeoPage[] = [
       {
         question: "这些价格来自哪里？",
         answer:
-          "价格卡片来自 CrazyRouter 价格页对应的 GET https://cn.crazyrouter.com/api/pricing 快照，用来展示当前公开模型名、端点类型和计费方式。"
+          "价格卡片来自 Crazyrouter 价格页对应的 GET https://cn.crazyrouter.com/api/pricing 快照，用来展示当前公开模型名、端点类型和计费方式。"
       },
       {
         question: "OpenAI SDK 应该配置哪个 Base URL？",
@@ -171,12 +171,12 @@ export const zhSeoPages: SeoPage[] = [
     ]
   }),
   page("veo-3-1-api", {
-    title: "Veo 3.1 API 中文接入指南 | CrazyRouter",
-    description: "使用 CrazyRouter 接入 veo-3.1-fast 和 veo-3.1，包含统一视频端点、按秒计费和接口检查证据。",
+    title: "Veo 3.1 API 中文接入指南 | Crazyrouter",
+    description: "使用 Crazyrouter 接入 veo-3.1-fast 和 veo-3.1，包含统一视频端点、按秒计费和接口检查证据。",
     eyebrow: "视频 API 指南",
     h1: "Veo 3.1 API 中文接入指南",
     intro:
-      "通过 CrazyRouter 统一视频 API 调用当前公开的 Veo 3.1 视频模型：veo-3.1-fast 和 veo-3.1。创建与查询任务都使用 https://cn.crazyrouter.com。",
+      "通过 Crazyrouter 统一视频 API 调用当前公开的 Veo 3.1 视频模型：veo-3.1-fast 和 veo-3.1。创建与查询任务都使用 https://cn.crazyrouter.com。",
     primaryKeyword: "veo 3.1 api",
     secondaryKeywords: ["veo api", "google veo api", "veo 3.1 价格"],
     cta: "测试 Veo 3.1",
@@ -224,12 +224,12 @@ export const zhSeoPages: SeoPage[] = [
     ]
   }),
   page("nano-banana-2-api", {
-    title: "Nano Banana 2 API 中文接入指南 | CrazyRouter",
-    description: "使用 CrazyRouter 的 OpenAI Images 兼容接口接入 nano-banana-2，并查看价格页模型行和参数规则。",
+    title: "Nano Banana 2 API 中文接入指南 | Crazyrouter",
+    description: "使用 Crazyrouter 的 OpenAI Images 兼容接口接入 nano-banana-2，并查看价格页模型行和参数规则。",
     eyebrow: "图片 API 指南",
     h1: "Nano Banana 2 API 中文接入指南",
     intro:
-      "Nano Banana 2 在 CrazyRouter 中使用标准模型名 nano-banana-2，并通过 OpenAI Images 兼容的 /v1/images/generations 接入。",
+      "Nano Banana 2 在 Crazyrouter 中使用标准模型名 nano-banana-2，并通过 OpenAI Images 兼容的 /v1/images/generations 接入。",
     primaryKeyword: "nano banana 2 api",
     secondaryKeywords: ["nano banana api", "gemini 图片 api", "nano-banana-2 价格"],
     cta: "测试 Nano Banana 2",
@@ -262,7 +262,7 @@ export const zhSeoPages: SeoPage[] = [
       {
         question: "Nano Banana 2 应该调用 Gemini 原生 generateContent 吗？",
         answer:
-          "CrazyRouter 当前公开约定建议从 POST /v1/images/generations 开始，供应商原生字段转换由网关侧处理。"
+          "Crazyrouter 当前公开约定建议从 POST /v1/images/generations 开始，供应商原生字段转换由网关侧处理。"
       },
       {
         question: "能否用参考图？",
@@ -272,12 +272,12 @@ export const zhSeoPages: SeoPage[] = [
     ]
   }),
   page("grok-4-image-api", {
-    title: "Grok 4 Image API 中文接入指南 | CrazyRouter",
-    description: "使用 CrazyRouter 接入 grok-4-image，查看 OpenAI Images 兼容端点、价格行和 Grok 专属参数限制。",
+    title: "Grok 4 Image API 中文接入指南 | Crazyrouter",
+    description: "使用 Crazyrouter 接入 grok-4-image，查看 OpenAI Images 兼容端点、价格行和 Grok 专属参数限制。",
     eyebrow: "图片 API 指南",
     h1: "Grok 4 Image API 中文接入指南",
     intro:
-      "使用 CrazyRouter 接入标准模型名 grok-4-image，通过 OpenAI Images 兼容端点生成图片，并按 Grok 图片模型的参数边界发起请求。",
+      "使用 Crazyrouter 接入标准模型名 grok-4-image，通过 OpenAI Images 兼容端点生成图片，并按 Grok 图片模型的参数边界发起请求。",
     primaryKeyword: "grok 4 image api",
     secondaryKeywords: ["grok 图片 api", "xai 图片 api", "grok-4-image 价格"],
     cta: "测试 Grok 图片生成",
@@ -287,7 +287,7 @@ export const zhSeoPages: SeoPage[] = [
       {
         heading: "可用模型和计费方式",
         body:
-          "当前价格目录中 grok-4-image 对客户公开 image-generation 端点。实际费用以 CrazyRouter 价格页、控制台和消费日志为准。",
+          "当前价格目录中 grok-4-image 对客户公开 image-generation 端点。实际费用以 Crazyrouter 价格页、控制台和消费日志为准。",
         bullets: cnAvailabilityBullets(["grok-4-image"])
       },
       {
@@ -320,12 +320,12 @@ export const zhSeoPages: SeoPage[] = [
     ]
   }),
   page("qwen-image-api", {
-    title: "Qwen Image API 中文接入指南 | CrazyRouter",
-    description: "使用 CrazyRouter 接入 qwen-image-plus、qwen-image-max 和 qwen-image-2.0 的 OpenAI Images 兼容 API。",
+    title: "Qwen Image API 中文接入指南 | Crazyrouter",
+    description: "使用 Crazyrouter 接入 qwen-image-plus、qwen-image-max 和 qwen-image-2.0 的 OpenAI Images 兼容 API。",
     eyebrow: "图片 API 指南",
     h1: "Qwen Image API 中文接入指南",
     intro:
-      "Qwen Image 是一个模型族页面，覆盖 CrazyRouter 价格 API 当前返回的三个 Qwen 图片模型。",
+      "Qwen Image 覆盖 Crazyrouter 价格 API 当前返回的三个 Qwen 图片模型。",
     primaryKeyword: "qwen image api",
     secondaryKeywords: ["qwen-image-plus api", "qwen-image-max api", "qwen-image-2.0 api"],
     cta: "测试 Qwen Image API",
@@ -341,7 +341,7 @@ export const zhSeoPages: SeoPage[] = [
       {
         heading: "客户侧协议",
         body:
-          "CrazyRouter 通过 OpenAI Images 兼容的 POST /v1/images/generations 路由暴露这些 Qwen Image 模型。供应商侧同步或异步执行由网关处理。",
+          "Crazyrouter 通过 OpenAI Images 兼容的 POST /v1/images/generations 路由暴露这些 Qwen Image 模型。供应商侧同步或异步执行由网关处理。",
         bullets: [
           "质量优先的文生图基线可先测 qwen-image-max。",
           "标准请求先使用 size 和 n。",
@@ -368,13 +368,13 @@ export const zhSeoPages: SeoPage[] = [
     ]
   }),
   page("ai-api-platform-comparison", {
-    title: "AI API 平台替代方案：CrazyRouter 与主流平台对比 | CrazyRouter",
+    title: "AI API 平台替代方案：Crazyrouter 与主流平台对比 | Crazyrouter",
     description:
-      "比较 CrazyRouter 与 fal.ai、WaveSpeed AI、PiAPI、CometAPI、Replicate、AIML API、Eachlabs 在生产 API 接入中的差异。",
+      "比较 Crazyrouter 与 fal.ai、WaveSpeed AI、PiAPI、CometAPI、Replicate、AIML API、Eachlabs 在生产 API 接入中的差异。",
     eyebrow: "平台替代方案",
     h1: "AI API 平台替代方案",
     intro:
-      "AI API 平台看起来都能接入模型，但实际定位不同。有的平台适合发现模型，有的平台适合托管社区模型，有的平台偏工作流编排。CrazyRouter 更适合把已经确定的图片、视频、聊天或 Embedding 请求接入到清晰的生产 API 网关。",
+      "AI API 平台看起来都能接入模型，但实际定位不同。有的平台适合发现模型，有的平台适合托管社区模型，有的平台偏工作流编排。Crazyrouter 更适合把已经确定的图片、视频、聊天或 Embedding 请求接入到清晰的生产 API 网关。",
     primaryKeyword: "ai api 替代方案",
     secondaryKeywords: ["fal ai 替代", "replicate 替代", "aiml api 替代", "ai api 平台"],
     cta: "查看平台差异",
@@ -384,16 +384,16 @@ export const zhSeoPages: SeoPage[] = [
       {
         heading: "先按工作流判断",
         body:
-          "发现阶段需要快速浏览供应商、模型类别和 API 能力；托管阶段需要能部署或运行社区模型；生产阶段更需要稳定 Base URL、一致认证、端点级示例、价格可见、控制台账单和消费日志。CrazyRouter 更偏生产阶段。"
+          "发现阶段需要快速浏览供应商、模型类别和 API 能力；托管阶段需要能部署或运行社区模型；生产阶段更需要稳定 Base URL、一致认证、端点级示例、价格可见、控制台账单和消费日志。Crazyrouter 更偏生产阶段。"
       },
       {
         heading: "按平台逐一比较",
         body:
-          "下面这些平台都可以成为选型对象，但每个平台的替代原因不同。建议先打开与当前供应商对应的页面，再用真实模型名、端点和价格行做小批量请求验证。",
+          "不同平台解决的问题并不相同。选择时可以先看当前供应商更偏模型市场、聚合 API、托管模型还是工作流编排，再对照 Crazyrouter 的标准模型名、端点、价格和控制台记录。",
         bullets: [
           "fal.ai：从生成式媒体模型市场，转向更稳定的生产 API 网关。",
           "WaveSpeed AI：从宽泛创意模型平台，转向价格与端点更清晰的接入流程。",
-          "PiAPI：从模型专属任务 API，转向 CrazyRouter 当前公开支持的图片和视频路线。",
+          "PiAPI：从模型专属任务 API，转向 Crazyrouter 当前公开支持的图片和视频路线。",
           "CometAPI：从大模型聚合面，转向更容易核对价格和用量的生产接入。",
           "Replicate：从托管社区模型和自定义模型，转向已选定模型的生产 API 调用。",
           "AIML API：从广泛 OpenAI 兼容模型面，转向模型行、价格和端点更明确的网关。",
@@ -401,13 +401,13 @@ export const zhSeoPages: SeoPage[] = [
         ]
       },
       {
-        heading: "CrazyRouter 适合什么场景",
+        heading: "Crazyrouter 适合什么场景",
         body:
-          "当你已经明确要接入图片、视频、聊天、Embedding 或兜底链路时，CrazyRouter 的价值在于把标准模型名、端点、价格、文档和消费记录放到同一套接入流程中。API 请求使用 https://cn.crazyrouter.com；账号登录、充值、控制台和消费记录使用 https://crazyrouter.com。",
+          "当你已经明确要接入图片、视频、聊天、Embedding 或兜底链路时，Crazyrouter 的价值在于把标准模型名、端点、价格、文档和消费记录放到同一套接入流程中。API 请求使用 https://cn.crazyrouter.com；账号登录、充值、控制台和消费记录使用 https://crazyrouter.com。",
         bullets: [
           "价格来源：GET https://cn.crazyrouter.com/api/pricing。",
           "OpenAI 兼容 Base URL：https://cn.crazyrouter.com/v1。",
-          "模型页链接到具体 CrazyRouter 文档和 endpoint type。",
+          "相关文档提供具体请求路径、端点类型和参数说明。",
           "成本估算使用真实模型行，不使用泛化类别价格。"
         ]
       },
@@ -421,33 +421,33 @@ export const zhSeoPages: SeoPage[] = [
     related: competitorRelated
   }),
   page("fal-ai-alternative", {
-    title: "fal.ai 替代方案：生产图片与视频 API 接入 | CrazyRouter",
+    title: "fal.ai 替代方案：生产图片与视频 API 接入 | Crazyrouter",
     description:
-      "比较 fal.ai 与 CrazyRouter 在生成式媒体 API、标准模型名、价格可见性、端点路径和生产迁移流程上的差异。",
+      "比较 fal.ai 与 Crazyrouter 在生成式媒体 API、标准模型名、价格可见性、端点路径和生产迁移流程上的差异。",
     eyebrow: "平台替代方案",
     h1: "fal.ai 替代方案",
     intro:
-      "fal.ai 适合探索生成式媒体模型、使用模型市场和 serverless 模型执行。CrazyRouter 更适合已经进入生产接入阶段的团队：需要标准模型名、固定 API 域名、清晰价格行、控制台账单和消费记录。",
+      "fal.ai 适合探索生成式媒体模型、使用模型市场和 serverless 模型执行。Crazyrouter 更适合已经进入生产接入阶段的团队：需要标准模型名、固定 API 域名、清晰价格行、控制台账单和消费记录。",
     primaryKeyword: "fal ai 替代",
     secondaryKeywords: ["fal.ai alternative", "fal api 替代", "fal ai 价格"],
-    cta: "开始接入 CrazyRouter",
+    cta: "开始接入 Crazyrouter",
     intent:
       "适合已经确定图片或视频生成工作负载，正在把测试请求迁移到可计费、可复查、可长期维护的 API 网关的团队。",
     sections: [
       {
-        heading: "什么时候选择 CrazyRouter",
+        heading: "什么时候选择 Crazyrouter",
         body:
-          "当你不只是试模型，而是要把图片、视频、聊天或 Embedding 请求接入后端服务时，CrazyRouter 的优势更明显。API 请求使用 https://cn.crazyrouter.com；登录、充值、API Key、控制台和消费记录使用 https://crazyrouter.com。",
+          "当你不只是试模型，而是要把图片、视频、聊天或 Embedding 请求接入后端服务时，Crazyrouter 的优势更明显。API 请求使用 https://cn.crazyrouter.com；登录、充值、API Key、控制台和消费记录使用 https://crazyrouter.com。",
         bullets: [
           "标准模型名可以直接从价格卡片复制，减少模型别名写错的风险。",
           "图片生成使用 POST https://cn.crazyrouter.com/v1/images/generations。",
-          "视频创建使用 CrazyRouter 文档中的视频路径，例如 POST https://cn.crazyrouter.com/v1/video/create。"
+          "视频创建使用 Crazyrouter 文档中的视频路径，例如 POST https://cn.crazyrouter.com/v1/video/create。"
         ]
       },
       {
         heading: "fal.ai 仍然适合的场景",
         body:
-          "如果你需要 fal.ai 专属模型端点、模型市场原生示例，或自定义 serverless 模型部署，fal.ai 仍然是合适选择。CrazyRouter 不替代所有 fal serverless 场景。"
+          "如果你需要 fal.ai 专属模型端点、模型市场原生示例，或自定义 serverless 模型部署，fal.ai 仍然是合适选择。Crazyrouter 不替代所有 fal serverless 场景。"
       },
       {
         heading: "迁移路径",
@@ -458,34 +458,34 @@ export const zhSeoPages: SeoPage[] = [
       {
         heading: "选择建议",
         body:
-          "模型探索、模型市场和自定义 serverless 执行优先选 fal.ai；稳定后端接入、价格可见、标准端点和消费记录优先选 CrazyRouter。"
+          "模型探索、模型市场和自定义 serverless 执行优先选 fal.ai；稳定后端接入、价格可见、标准端点和消费记录优先选 Crazyrouter。"
       }
     ],
     faqs: [],
     related: ["ai-api-platform-comparison", "wavespeed-ai-alternative", "replicate-alternative", "ai-api-cost-calculator"]
   }),
   page("wavespeed-ai-alternative", {
-    title: "WaveSpeed AI 替代方案：生产 API 工作流 | CrazyRouter",
+    title: "WaveSpeed AI 替代方案：生产 API 工作流 | Crazyrouter",
     description:
-      "比较 WaveSpeed AI 与 CrazyRouter 在图片、视频、多模态模型接入、价格可见性和生产 API 工作流上的差异。",
+      "比较 WaveSpeed AI 与 Crazyrouter 在图片、视频、多模态模型接入、价格可见性和生产 API 工作流上的差异。",
     eyebrow: "平台替代方案",
     h1: "WaveSpeed AI 替代方案",
     intro:
-      "WaveSpeed AI 更偏宽泛创意模型平台和快速生成体验。CrazyRouter 更适合需要把模型调用落到后端生产环境的团队：固定 API 地址、标准模型名、价格行、端点示例和控制台消费记录都要能核对。",
+      "WaveSpeed AI 更偏宽泛创意模型平台和快速生成体验。Crazyrouter 更适合需要把模型调用落到后端生产环境的团队：固定 API 地址、标准模型名、价格行、端点示例和控制台消费记录都要能核对。",
     primaryKeyword: "wavespeed ai 替代",
     secondaryKeywords: ["wavespeed 替代", "wavespeed api 替代", "wavespeed ai 价格"],
-    cta: "测试 CrazyRouter API",
+    cta: "测试 Crazyrouter API",
     intent:
       "适合从创意生成和模型试用阶段，进入后端 API 接入、预算核算和稳定调用阶段的团队。",
     sections: [
       {
-        heading: "什么时候选择 CrazyRouter",
+        heading: "什么时候选择 Crazyrouter",
         body:
-          "如果你的目标不是浏览最多模型，而是让生产请求稳定运行，CrazyRouter 更直接。模型名、价格、端点和示例代码都围绕同一套接入路径组织，账号侧操作集中在 https://crazyrouter.com。",
+          "如果你的目标不是浏览最多模型，而是让生产请求稳定运行，Crazyrouter 更直接。模型名、价格、端点和示例代码都围绕同一套接入路径组织，账号侧操作集中在 https://crazyrouter.com。",
         bullets: [
           "API 请求域名固定为 https://cn.crazyrouter.com。",
           "OpenAI 兼容 SDK 使用 https://cn.crazyrouter.com/v1。",
-          "价格卡片来自 CrazyRouter 当前价格目录，不用泛化类别价格估算。"
+          "价格卡片来自 Crazyrouter 当前价格目录，不用泛化类别价格估算。"
         ]
       },
       {
@@ -496,26 +496,26 @@ export const zhSeoPages: SeoPage[] = [
       {
         heading: "迁移路径",
         body:
-          "先选择一个模型族做验证。图片生成建议从 gpt-image-2、nano-banana-2 或 qwen-image-max 开始；视频生成建议先用 veo-3.1-fast 做短时长任务，再比较 veo-3.1。",
+          "按模型族接入更稳妥。图片生成可从 gpt-image-2、nano-banana-2 或 qwen-image-max 开始；视频生成可先用 veo-3.1-fast 跑短时长任务，再比较 veo-3.1。",
         bullets: cnAvailabilityBullets(["gpt-image-2", "nano-banana-2", "qwen-image-max", "veo-3.1-fast", "veo-3.1"])
       },
       {
         heading: "选择建议",
         body:
-          "创意工具和模型广度优先时继续评估 WaveSpeed AI；端点清晰、账单可复查、生产后端可长期维护时优先评估 CrazyRouter。"
+          "创意工具和模型广度优先时继续评估 WaveSpeed AI；端点清晰、账单可复查、生产后端可长期维护时优先评估 Crazyrouter。"
       }
     ],
     faqs: [],
     related: ["ai-api-platform-comparison", "fal-ai-alternative", "eachlabs-alternative", "veo-3-1-api"]
   }),
   page("piapi-alternative", {
-    title: "PiAPI 替代方案：稳定图片与视频 API 接入 | CrazyRouter",
+    title: "PiAPI 替代方案：稳定图片与视频 API 接入 | Crazyrouter",
     description:
-      "比较 PiAPI 与 CrazyRouter 在模型专属任务 API、图片视频生成、标准模型名、价格可见性和迁移路径上的差异。",
+      "比较 PiAPI 与 Crazyrouter 在模型专属任务 API、图片视频生成、标准模型名、价格可见性和迁移路径上的差异。",
     eyebrow: "平台替代方案",
     h1: "PiAPI 替代方案",
     intro:
-      "PiAPI 常用于接入 Midjourney、Kling、Suno 等模型或任务型能力。CrazyRouter 更适合当前价格页已公开的图片、视频、聊天和 Embedding 路线，尤其是需要标准模型名、端点示例和消费记录的生产接入。",
+      "PiAPI 常用于接入 Midjourney、Kling、Suno 等模型或任务型能力。Crazyrouter 更适合当前价格页已公开的图片、视频、聊天和 Embedding 路线，尤其是需要标准模型名、端点示例和消费记录的生产接入。",
     primaryKeyword: "piapi 替代",
     secondaryKeywords: ["piapi ai 替代", "midjourney api 替代", "piapi 价格"],
     cta: "复制模型名测试",
@@ -523,9 +523,9 @@ export const zhSeoPages: SeoPage[] = [
       "适合希望减少模型专属任务 API 依赖，把已支持的图片或视频生成调用迁移到更清晰生产网关的团队。",
     sections: [
       {
-        heading: "什么时候选择 CrazyRouter",
+        heading: "什么时候选择 Crazyrouter",
         body:
-          "当你的需求可以映射到 CrazyRouter 当前公开模型时，接入会更容易核对。每个页面都会把模型名、价格行、端点类型和示例代码放在一起，方便工程侧直接落地。",
+          "当你的需求可以映射到 Crazyrouter 当前公开模型时，接入会更容易核对。模型名、价格行、端点类型和示例代码可以直接对应到后端实现。",
         bullets: [
           "图片生成使用 POST https://cn.crazyrouter.com/v1/images/generations。",
           "统一视频创建使用 POST https://cn.crazyrouter.com/v1/video/create。",
@@ -535,41 +535,41 @@ export const zhSeoPages: SeoPage[] = [
       {
         heading: "PiAPI 仍然适合的场景",
         body:
-          "如果你的产品依赖 PiAPI 专属的 Midjourney、音乐或其他任务动作，而这些动作不在 CrazyRouter 当前公开价格目录里，应该继续保留原有接入。"
+          "如果你的产品依赖 PiAPI 专属的 Midjourney、音乐或其他任务动作，而这些动作不在 Crazyrouter 当前公开价格目录里，原有接入仍然更合适。"
       },
       {
         heading: "迁移路径",
         body:
-          "先把现有 PiAPI 调用按图片生成、图片编辑、视频生成、音乐生成和模型专属任务拆开。只迁移 CrazyRouter 已有价格行和文档路径的部分，其他能力等公开模型行明确后再评估。",
+          "可以将现有 PiAPI 调用按图片生成、图片编辑、视频生成、音乐生成和模型专属任务拆开。已公开价格行和文档路径的部分适合迁入 Crazyrouter，其他能力等公开模型行明确后再评估。",
         bullets: cnAvailabilityBullets(["gpt-image-2", "nano-banana-2", "qwen-image-max", "grok-4-image"])
       },
       {
         heading: "选择建议",
         body:
-          "模型专属任务能力优先时继续使用 PiAPI；已支持模型的稳定生产调用、价格核对和消费记录优先时使用 CrazyRouter。"
+          "模型专属任务能力优先时继续使用 PiAPI；已支持模型的稳定生产调用、价格核对和消费记录优先时使用 Crazyrouter。"
       }
     ],
     faqs: [],
     related: ["ai-api-platform-comparison", "cometapi-alternative", "fal-ai-alternative", "gpt-image-2-api"]
   }),
   page("cometapi-alternative", {
-    title: "CometAPI 替代方案：生产 AI API 接入 | CrazyRouter",
+    title: "CometAPI 替代方案：生产 AI API 接入 | Crazyrouter",
     description:
-      "比较 CometAPI 与 CrazyRouter 在 AI API 聚合、模型命名、端点清晰度、价格可见性和生产迁移上的差异。",
+      "比较 CometAPI 与 Crazyrouter 在 AI API 聚合、模型命名、端点清晰度、价格可见性和生产迁移上的差异。",
     eyebrow: "平台替代方案",
     h1: "CometAPI 替代方案",
     intro:
-      "CometAPI 更容易被需要广泛模型聚合的团队纳入选型。CrazyRouter 更适合已经确定要跑哪些模型、并希望在生产前核对模型名、端点、价格和消费记录的团队。",
+      "CometAPI 更容易被需要广泛模型聚合的团队纳入选型。Crazyrouter 更适合已经确定要跑哪些模型、并希望在生产前核对模型名、端点、价格和消费记录的团队。",
     primaryKeyword: "cometapi 替代",
     secondaryKeywords: ["comet api 替代", "cometapi 价格", "ai api 替代"],
-    cta: "查看 CrazyRouter 价格",
+    cta: "查看 Crazyrouter 价格",
     intent:
       "适合需要保留 AI API 聚合能力，同时让核心生产请求具备更清楚价格、端点和账单记录的团队。",
     sections: [
       {
-        heading: "什么时候选择 CrazyRouter",
+        heading: "什么时候选择 Crazyrouter",
         body:
-          "CrazyRouter 的优势在于把生产调用需要的信息放在同一条路径里：复制模型名，确认端点，查看价格行，运行示例请求，再到控制台核对消费。",
+          "Crazyrouter 的优势在于把生产调用需要的信息放在同一条路径里：复制模型名，确认端点，查看价格行，运行示例请求，再到控制台核对消费。",
         bullets: [
           "价格来源：GET https://cn.crazyrouter.com/api/pricing。",
           "OpenAI 兼容 Base URL：https://cn.crazyrouter.com/v1。",
@@ -579,31 +579,31 @@ export const zhSeoPages: SeoPage[] = [
       {
         heading: "CometAPI 仍然适合的场景",
         body:
-          "如果首要目标是尽可能广的模型目录，CometAPI 仍然有价值。CrazyRouter 更适合其公开模型目录里已经有明确价格和端点的生产工作负载。"
+          "如果首要目标是尽可能广的模型目录，CometAPI 仍然有价值。Crazyrouter 更适合其公开模型目录里已经有明确价格和端点的生产工作负载。"
       },
       {
         heading: "迁移路径",
         body:
-          "不要先迁移整个模型目录。选一个高频调用路径，找到 CrazyRouter 对应模型名，完成小批量请求，然后比较延迟、成功率和有效产出成本。",
+          "更稳妥的方式是从一个高频调用路径开始，找到 Crazyrouter 对应模型名，完成小批量请求，然后比较延迟、成功率和有效产出成本。",
         bullets: cnAvailabilityBullets(["gpt-image-2", "nano-banana-2", "qwen-image-max", "veo-3.1-fast"])
       },
       {
         heading: "选择建议",
         body:
-          "模型目录广度优先时继续评估 CometAPI；模型名、端点、价格和消费记录可复查优先时评估 CrazyRouter。"
+          "模型目录广度优先时继续评估 CometAPI；模型名、端点、价格和消费记录可复查优先时评估 Crazyrouter。"
       }
     ],
     faqs: [],
     related: ["ai-api-platform-comparison", "aimlapi-alternative", "piapi-alternative", "ai-api-cost-calculator"]
   }),
   page("replicate-alternative", {
-    title: "Replicate 替代方案：生产 AI API 网关 | CrazyRouter",
+    title: "Replicate 替代方案：生产 AI API 网关 | Crazyrouter",
     description:
-      "比较 Replicate 与 CrazyRouter 在托管社区模型、自定义模型部署、商业模型 API 接入、价格可见性和生产记录上的差异。",
+      "比较 Replicate 与 Crazyrouter 在托管社区模型、自定义模型部署、商业模型 API 接入、价格可见性和生产记录上的差异。",
     eyebrow: "平台替代方案",
     h1: "Replicate 替代方案",
     intro:
-      "Replicate 擅长托管社区模型、开源模型和自定义模型部署。CrazyRouter 更适合不需要部署模型、而是要把选定的商业图片、视频、聊天或 Embedding 模型接入生产网关的团队。",
+      "Replicate 擅长托管社区模型、开源模型和自定义模型部署。Crazyrouter 更适合不需要部署模型、而是要把选定的商业图片、视频、聊天或 Embedding 模型接入生产网关的团队。",
     primaryKeyword: "replicate 替代",
     secondaryKeywords: ["replicate api 替代", "replicate 价格", "replicate ai 替代"],
     cta: "测试生产 API",
@@ -611,53 +611,53 @@ export const zhSeoPages: SeoPage[] = [
       "适合正在区分“模型托管平台”和“生产 API 网关”的团队，尤其是已经确定不需要自己部署模型的场景。",
     sections: [
       {
-        heading: "什么时候选择 CrazyRouter",
+        heading: "什么时候选择 Crazyrouter",
         body:
-          "如果产品不需要运行自定义模型，而是调用 CrazyRouter 已公开的模型路线，CrazyRouter 的生产接入更直接：统一域名、标准模型名、端点示例、价格卡片和控制台消费记录。",
+          "如果产品不需要运行自定义模型，而是调用 Crazyrouter 已公开的模型路线，Crazyrouter 的生产接入更直接：统一域名、标准模型名、端点示例、价格卡片和控制台消费记录。",
         bullets: [
           "图片模型可使用 OpenAI Images 兼容端点。",
           "视频模型可使用统一视频创建和查询流程。",
-          "成本估算使用当前 CrazyRouter 价格行。"
+          "成本估算使用当前 Crazyrouter 价格行。"
         ]
       },
       {
         heading: "Replicate 仍然适合的场景",
         body:
-          "如果你需要托管开源模型、运行社区模型，或部署自己的模型版本，Replicate 仍然更合适。CrazyRouter 不用于任意模型托管。"
+          "如果你需要托管开源模型、运行社区模型，或部署自己的模型版本，Replicate 仍然更合适。Crazyrouter 不用于任意模型托管。"
       },
       {
         heading: "迁移路径",
         body:
-          "先把 Replicate 调用分成自定义模型、社区模型和主流 API 工作负载。自定义和社区模型继续留在 Replicate；主流图片与视频请求可按 CrazyRouter 的价格行逐步迁移测试。",
+          "可以将 Replicate 调用分成自定义模型、社区模型和主流 API 工作负载。自定义和社区模型继续留在 Replicate；主流图片与视频请求可按 Crazyrouter 的价格行逐步迁移测试。",
         bullets: cnAvailabilityBullets(["gpt-image-2", "nano-banana-2", "qwen-image-max", "veo-3.1-fast", "veo-3.1"])
       },
       {
         heading: "选择建议",
         body:
-          "模型托管和开源实验优先选 Replicate；选定模型的生产 API 调用、端点清晰和账单记录优先选 CrazyRouter。"
+          "模型托管和开源实验优先选 Replicate；选定模型的生产 API 调用、端点清晰和账单记录优先选 Crazyrouter。"
       }
     ],
     faqs: [],
     related: ["ai-api-platform-comparison", "fal-ai-alternative", "aimlapi-alternative", "veo-3-1-api"]
   }),
   page("aimlapi-alternative", {
-    title: "AIML API 替代方案：生产模型路由 | CrazyRouter",
+    title: "AIML API 替代方案：生产模型路由 | Crazyrouter",
     description:
-      "比较 AIML API 与 CrazyRouter 在 OpenAI 兼容接入、广泛模型目录、价格可见性、标准模型名和控制台记录上的差异。",
+      "比较 AIML API 与 Crazyrouter 在 OpenAI 兼容接入、广泛模型目录、价格可见性、标准模型名和控制台记录上的差异。",
     eyebrow: "平台替代方案",
     h1: "AIML API 替代方案",
     intro:
-      "AIML API 通常用于用一个 API 面接入大量模型。CrazyRouter 更适合希望在较小但清晰的模型集合里，获得标准模型名、端点路径、价格行和控制台记录的生产团队。",
+      "AIML API 通常用于用一个 API 面接入大量模型。Crazyrouter 更适合希望在较小但清晰的模型集合里，获得标准模型名、端点路径、价格行和控制台记录的生产团队。",
     primaryKeyword: "aiml api 替代",
     secondaryKeywords: ["aimlapi 替代", "aiml api 价格", "openai compatible api 替代"],
-    cta: "配置 CrazyRouter Base URL",
+    cta: "配置 Crazyrouter Base URL",
     intent:
       "适合需要 OpenAI 兼容接入，同时要求模型价格、端点行为和用量记录更容易复查的团队。",
     sections: [
       {
-        heading: "什么时候选择 CrazyRouter",
+        heading: "什么时候选择 Crazyrouter",
         body:
-          "CrazyRouter 适合在生产发布前把每个支持模型都核对清楚：模型名是什么、端点怎么调用、价格来自哪里、消费记录在哪里看。",
+          "Crazyrouter 适合在生产发布前把每个支持模型都核对清楚：模型名是什么、端点怎么调用、价格来自哪里、消费记录在哪里看。",
         bullets: [
           "OpenAI 兼容 SDK 使用 https://cn.crazyrouter.com/v1。",
           "API 请求使用 https://cn.crazyrouter.com。",
@@ -667,31 +667,31 @@ export const zhSeoPages: SeoPage[] = [
       {
         heading: "AIML API 仍然适合的场景",
         body:
-          "如果首要目标是一个 API 品牌下覆盖尽可能多模型，AIML API 仍然有优势。CrazyRouter 更适合当前公开目录中价格和端点已经明确的模型。"
+          "如果首要目标是一个 API 品牌下覆盖尽可能多模型，AIML API 仍然有优势。Crazyrouter 更适合当前公开目录中价格和端点已经明确的模型。"
       },
       {
         heading: "迁移路径",
         body:
-          "先从 OpenAI 兼容客户端配置开始。替换 base_url，复制一个 CrazyRouter 标准模型名，跑小批量请求，再决定是否扩大到更多模型。",
+          "OpenAI 兼容客户端迁移通常从 base_url 开始。替换 base_url，复制一个 Crazyrouter 标准模型名，跑小批量请求，再决定是否扩大到更多模型。",
         bullets: cnAvailabilityBullets(["gpt-image-2", "nano-banana-2", "qwen-image-max", "grok-4-image"])
       },
       {
         heading: "选择建议",
         body:
-          "模型广度优先时继续评估 AIML API；模型行、端点、价格和用量记录清晰优先时评估 CrazyRouter。"
+          "模型广度优先时继续评估 AIML API；模型行、端点、价格和用量记录清晰优先时评估 Crazyrouter。"
       }
     ],
     faqs: [],
     related: ["ai-api-platform-comparison", "cometapi-alternative", "replicate-alternative", "gpt-image-2-api"]
   }),
   page("eachlabs-alternative", {
-    title: "Eachlabs 替代方案：直接 AI API 集成 | CrazyRouter",
+    title: "Eachlabs 替代方案：直接 AI API 集成 | Crazyrouter",
     description:
-      "比较 Eachlabs 与 CrazyRouter 在 AI 工作流编排、媒体生成管线、直接 API 调用、价格可见性和生产集成上的差异。",
+      "比较 Eachlabs 与 Crazyrouter 在 AI 工作流编排、媒体生成管线、直接 API 调用、价格可见性和生产集成上的差异。",
     eyebrow: "平台替代方案",
     h1: "Eachlabs 替代方案",
     intro:
-      "Eachlabs 更偏 AI 工作流和多步骤媒体生成管线。CrazyRouter 更适合开发者自己控制业务流程，只需要稳定调用模型 API、核对价格和查看生产消费记录的场景。",
+      "Eachlabs 更偏 AI 工作流和多步骤媒体生成管线。Crazyrouter 更适合开发者自己控制业务流程，只需要稳定调用模型 API、核对价格和查看生产消费记录的场景。",
     primaryKeyword: "eachlabs 替代",
     secondaryKeywords: ["eachlabs ai 替代", "ai workflow api 替代", "媒体生成 api 替代"],
     cta: "接入直接 API",
@@ -699,42 +699,42 @@ export const zhSeoPages: SeoPage[] = [
       "适合正在判断应该使用工作流型产品，还是把模型调用直接放进后端服务和任务系统的团队。",
     sections: [
       {
-        heading: "什么时候选择 CrazyRouter",
+        heading: "什么时候选择 Crazyrouter",
         body:
-          "如果你的应用已经有自己的任务系统、队列、审核和业务流程，直接 API 网关通常更容易维护。CrazyRouter 让模型调用保持简单：选择模型、复制端点、传 Bearer 认证，再到控制台核对用量。",
+          "如果你的应用已经有自己的任务系统、队列、审核和业务流程，直接 API 网关通常更容易维护。Crazyrouter 让模型调用保持简单：选择模型、复制端点、传 Bearer 认证，再到控制台核对用量。",
         bullets: [
           "直接 API 请求使用 https://cn.crazyrouter.com。",
           "控制台、API Key、充值和消费记录使用 https://crazyrouter.com。",
-          "模型名和价格来自 CrazyRouter 当前价格目录。"
+          "模型名和价格来自 Crazyrouter 当前价格目录。"
         ]
       },
       {
         heading: "Eachlabs 仍然适合的场景",
         body:
-          "如果团队需要可视化工作流、媒体管线编排或给非开发人员使用的生成流程，Eachlabs 仍然更匹配。CrazyRouter 更接近后端 API 网关。"
+          "如果团队需要可视化工作流、媒体管线编排或给非开发人员使用的生成流程，Eachlabs 仍然更匹配。Crazyrouter 更接近后端 API 网关。"
       },
       {
         heading: "迁移路径",
         body:
-          "保留应用自己的编排逻辑，把单个模型调用逐步换到 CrazyRouter。先从图片生成或短视频任务开始，因为这些模型已经有价格行和文档路径可以核对。",
+          "保留应用自己的编排逻辑，把单个模型调用逐步换到 Crazyrouter。图片生成或短视频任务更适合作为起点，因为这些模型已经有价格行和文档路径可以核对。",
         bullets: cnAvailabilityBullets(["gpt-image-2", "nano-banana-2", "qwen-image-max", "veo-3.1-fast"])
       },
       {
         heading: "选择建议",
         body:
-          "工作流工具和可视化编排优先选 Eachlabs；开发者自控流程、直接模型调用、价格可见和消费记录优先选 CrazyRouter。"
+          "工作流工具和可视化编排优先选 Eachlabs；开发者自控流程、直接模型调用、价格可见和消费记录优先选 Crazyrouter。"
       }
     ],
     faqs: [],
     related: ["ai-api-platform-comparison", "wavespeed-ai-alternative", "fal-ai-alternative", "veo-3-1-api"]
   }),
   page("ai-api-cost-calculator", {
-    title: "AI API 成本计算器：基于 CrazyRouter 价格页 | CrazyRouter",
-    description: "使用 CrazyRouter 价格页模型行估算 gpt-image-2、Veo、Nano Banana、Grok 和 Qwen Image 的图片与视频 API 成本。",
+    title: "AI API 成本计算器：基于 Crazyrouter 价格页 | Crazyrouter",
+    description: "使用 Crazyrouter 价格页模型行估算 gpt-image-2、Veo、Nano Banana、Grok 和 Qwen Image 的图片与视频 API 成本。",
     eyebrow: "交互工具",
     h1: "AI API 成本计算器",
     intro:
-      "用 CrazyRouter 当前价格目录估算图片与视频 API 成本。你可以调整请求用量、重试率、兜底占比和有效产出率，快速看到月度预算变化。",
+      "用 Crazyrouter 当前价格目录估算图片与视频 API 成本。你可以调整请求用量、重试率、兜底占比和有效产出率，快速看到月度预算变化。",
     primaryKeyword: "ai api 成本计算器",
     secondaryKeywords: ["openai api 价格计算器", "视频 api 成本计算器", "图片 api 价格计算器"],
     cta: "估算模型成本",

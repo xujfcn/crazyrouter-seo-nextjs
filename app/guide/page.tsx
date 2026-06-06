@@ -3,9 +3,9 @@ import Link from "next/link";
 import { getPagePath, seoPages } from "@/content/seo-pages";
 
 export const metadata: Metadata = {
-  title: "CrazyRouter API Guides",
+  title: "Crazyrouter API Guides",
   description:
-    "CrazyRouter model API guides, comparison pages, and calculator pages with current pricing data and docs-backed examples.",
+    "Crazyrouter model API guides, comparison pages, and calculator pages with current pricing data and docs-backed examples.",
   alternates: {
     canonical: "/guide",
     languages: {
@@ -22,11 +22,11 @@ export default function GuideIndexPage() {
         <div className="mx-auto max-w-6xl px-5 py-14 md:py-20">
           <div className="text-sm font-semibold uppercase tracking-wide text-brand">Guide hub</div>
           <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight text-ink md:text-6xl">
-            CrazyRouter API guide pages
+            Crazyrouter API guide pages
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-muted">
             Compare model options, copy standard model names, review endpoint examples, and estimate costs
-            before creating an API key on CrazyRouter.
+            before creating an API key on Crazyrouter.
           </p>
         </div>
       </section>

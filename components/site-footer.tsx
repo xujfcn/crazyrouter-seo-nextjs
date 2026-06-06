@@ -11,11 +11,11 @@ export function SiteFooter() {
     <footer className="border-t border-line bg-white">
       <div className="mx-auto grid max-w-6xl gap-6 px-5 py-10 text-sm text-muted md:grid-cols-4">
         <div>
-          <div className="font-semibold text-ink">CrazyRouter</div>
+          <div className="font-semibold text-ink">Crazyrouter</div>
           <p className="mt-2">
             {isZh
-              ? "CrazyRouter AI API 中文指南，覆盖模型接入、平台替代方案和成本估算。"
-              : "CrazyRouter AI API guides for model access, platform comparisons, and cost planning."}
+              ? "Crazyrouter AI API 中文指南，覆盖模型接入、平台替代方案和成本估算。"
+              : "Crazyrouter AI API guides for model access, platform comparisons, and cost planning."}
           </p>
         </div>
         <div>

@@ -11,7 +11,7 @@ export function SiteHeader() {
     <header className="border-b border-line bg-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
         <Link href={isZh ? "/zh/guide" : "/"} className="text-lg font-semibold text-ink">
-          {isZh ? "CrazyRouter 中文指南" : "CrazyRouter Guides"}
+          {isZh ? "Crazyrouter 中文指南" : "Crazyrouter Guides"}
         </Link>
         <nav className="hidden items-center gap-6 text-sm text-muted md:flex">
           <Link href={isZh ? "/zh/guide/gpt-image-2-api" : "/guide/gpt-image-2-api"} className="hover:text-ink">
