@@ -6,6 +6,17 @@ import { usePathname } from "next/navigation";
 export function SiteFooter() {
   const pathname = usePathname();
   const isZh = pathname.startsWith("/zh/");
+  const directoryPath = pathname.startsWith("/ru/")
+    ? "/ru/for-directories"
+    : pathname.startsWith("/ja/")
+      ? "/ja/for-directories"
+      : pathname.startsWith("/zh-tw/")
+        ? "/zh-tw/for-directories"
+        : pathname.startsWith("/vi/")
+          ? "/vi/for-directories"
+          : isZh
+            ? "/zh/for-directories"
+            : "/for-directories";
 
   return (
     <footer className="border-t border-line bg-white">
@@ -47,6 +58,17 @@ export function SiteFooter() {
           <Link href={isZh ? "/zh/guide/ai-api-cost-calculator" : "/guide/ai-api-cost-calculator"} className="mt-2 block hover:text-ink">
             {isZh ? "AI API 成本计算器" : "AI API Cost Calculator"}
           </Link>
+          <Link href={directoryPath} className="mt-2 block hover:text-ink">
+            {isZh ? "目录收录资料" : "For directories"}
+          </Link>
+          <div className="mt-3 flex flex-wrap gap-x-3 gap-y-2">
+            <Link href="/for-directories" className="hover:text-ink">EN</Link>
+            <Link href="/zh/for-directories" className="hover:text-ink">简体中文</Link>
+            <Link href="/zh-tw/for-directories" className="hover:text-ink">繁體中文</Link>
+            <Link href="/ja/for-directories" className="hover:text-ink">日本語</Link>
+            <Link href="/ru/for-directories" className="hover:text-ink">Русский</Link>
+            <Link href="/vi/for-directories" className="hover:text-ink">Tiếng Việt</Link>
+          </div>
           <Link href={isZh ? "/guide" : "/zh/guide"} className="mt-2 block hover:text-ink">
             {isZh ? "English Guides" : "中文指南"}
           </Link>
