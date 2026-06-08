@@ -1,8 +1,20 @@
 /** @type {import('next').NextConfig} */
+const assetPrefix =
+  process.env.NEXT_PUBLIC_ASSET_PREFIX ||
+  (process.env.NODE_ENV === "production" ? "/guide-assets" : "");
+
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  assetPrefix: process.env.NEXT_PUBLIC_ASSET_PREFIX || "",
+  assetPrefix,
+  async rewrites() {
+    return [
+      {
+        source: "/guide-assets/_next/:path*",
+        destination: "/_next/:path*"
+      }
+    ];
+  },
   async redirects() {
     return [
       {
